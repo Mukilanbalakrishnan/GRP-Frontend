@@ -1,0 +1,192 @@
+<section class="w-full mt-24 bg-white overflow-hidden border-t border-b border-gray-200" id="brands-section">
+    
+    <div class="w-full bg-blue-950 py-8 border-b-4 border-red-600 relative z-20 shadow-2xl flex items-center justify-center overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden opacity-5">
+            <div class="absolute top-1/4 left-10 w-20 h-20 border-2 border-red-600 rounded-full animate-spin-slow"></div>
+            <div class="absolute bottom-1/4 right-10 w-16 h-16 border-2 border-blue-500 rounded-full animate-spin-reverse"></div>
+        </div>
+        
+        <div class="flex items-center gap-6 relative z-10">
+            <div class="hidden sm:flex items-center gap-3 animate-pulse">
+                <div class="w-3 h-3 bg-red-600 rounded-full"></div>
+                <div class="w-3 h-3 bg-red-600 rounded-full"></div>
+                <div class="w-3 h-3 bg-red-600 rounded-full"></div>
+            </div>
+            
+            <h2 class="text-white text-2xl md:text-4xl font-black tracking-[0.15em] uppercase text-center animate-fade-in">
+                TRUSTED <span class="text-red-500 animate-pulse-slow">PARTNERS</span>
+            </h2>
+            
+            <div class="hidden sm:flex items-center gap-3 animate-pulse">
+                <div class="w-3 h-3 bg-red-600 rounded-full"></div>
+                <div class="w-3 h-3 bg-red-600 rounded-full"></div>
+                <div class="w-3 h-3 bg-red-600 rounded-full"></div>
+            </div>
+        </div>
+        
+        <!-- Animated bottom line -->
+        <div class="absolute bottom-0 left-0 w-full h-1">
+            <div class="h-full bg-gradient-to-r from-transparent via-red-600 to-transparent animate-slide"></div>
+        </div>
+    </div>
+
+    <div class="w-full py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 flex flex-col gap-16 relative z-10 overflow-hidden">
+        
+        <!-- First Row - Moves Left -->
+        <div class="relative">
+            <div id="logo-row-1" class="w-full overflow-hidden flex py-4">
+                <div id="track-1" class="flex gap-10 w-max px-4"></div>
+            </div>
+            
+            <!-- Gradient overlay on sides -->
+            <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- Second Row - Moves Right -->
+        <div class="relative">
+            <div id="logo-row-2" class="w-full overflow-hidden flex py-4">
+                <div id="track-2" class="flex gap-10 w-max px-4"></div>
+            </div>
+            
+            <!-- Gradient overlay on sides -->
+            <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
+        </div>
+        
+        <!-- Stats with animations -->
+        <div class="max-w-screen-xl mx-auto px-6 mt-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="stat-item animate-float" style="animation-delay: 0.1s">
+                    <div class="text-5xl md:text-6xl font-black text-blue-950 mb-2 animate-count" data-count="50">0</div>
+                    <div class="text-sm text-gray-600 uppercase tracking-wider">Brand Partners</div>
+                </div>
+                <div class="stat-item animate-float" style="animation-delay: 0.3s">
+                    <div class="text-5xl md:text-6xl font-black text-red-600 mb-2 animate-count" data-count="15">0</div>
+                    <div class="text-sm text-gray-600 uppercase tracking-wider">Years Experience</div>
+                </div>
+                <div class="stat-item animate-float" style="animation-delay: 0.5s">
+                    <div class="text-5xl md:text-6xl font-black text-blue-950 mb-2 animate-count" data-count="1000">0</div>
+                    <div class="text-sm text-gray-600 uppercase tracking-wider">Projects Completed</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    /* Custom animations */
+    @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    @keyframes spin-reverse {
+        from { transform: rotate(360deg); }
+        to { transform: rotate(0deg); }
+    }
+    
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slide {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+    
+    @keyframes glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+        50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+    }
+    
+    @keyframes bounce-in {
+        0% { transform: scale(0.3); opacity: 0; }
+        50% { transform: scale(1.05); }
+        70% { transform: scale(0.9); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .animate-spin-slow {
+        animation: spin-slow 20s linear infinite;
+    }
+    
+    .animate-spin-reverse {
+        animation: spin-reverse 25s linear infinite;
+    }
+    
+    .animate-fade-in {
+        animation: fade-in 1s ease-out;
+    }
+    
+    .animate-slide {
+        animation: slide 3s linear infinite;
+    }
+    
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-pulse-slow {
+        animation: pulse-slow 2s ease-in-out infinite;
+    }
+    
+    /* Logo card enhanced animations */
+    .logo-card {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: bounce-in 0.6s ease-out backwards;
+    }
+    
+    .logo-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        animation: glow 2s ease-in-out infinite;
+        z-index: 10;
+    }
+    
+    .logo-card::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(45deg, #1e40af, #dc2626);
+        border-radius: 12px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .logo-card:hover::before {
+        opacity: 1;
+    }
+    
+    .logo-icon {
+        transition: all 0.3s ease;
+    }
+    
+    .logo-card:hover .logo-icon {
+        transform: rotate(12deg) scale(1.1);
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    }
+    
+    .stat-item {
+        transition: all 0.3s ease;
+    }
+    
+    .stat-item:hover {
+        transform: scale(1.05);
+    }
+</style>
