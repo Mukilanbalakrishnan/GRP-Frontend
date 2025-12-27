@@ -2,27 +2,48 @@
     
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
         
-        <!-- Simple Header -->
-        <div class="text-header-animate w-full bg-gradient-to-r from-[#1e0094] to-blue-900 rounded-xl py-8 px-6 mb-12 shadow-2xl opacity-0 translate-y-[-20px] flex flex-col items-center justify-center relative overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-            
-            <!-- Animated background elements -->
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute top-4 left-4 w-16 h-16 border-2 border-red-500 rounded-full animate-spin-slow"></div>
-                <div class="absolute bottom-4 right-4 w-12 h-12 border-2 border-white rounded-full animate-spin-reverse"></div>
-            </div>
-            
-            <h2 class="text-white text-2xl md:text-3xl font-bold tracking-wide uppercase text-center relative z-10">
-                Client Testimonials
-            </h2>
-            
-            <p class="text-blue-200 text-center mt-2 relative z-10 text-sm">
-                What our clients say about us
-            </p>
+        <div class="text-header-animate text-center mb-14 opacity-0 translate-y-6">
+
+    <!-- Small top label -->
+    <p class="text-blue-600 text-xs md:text-sm font-semibold tracking-[0.3em] uppercase mb-3">
+        Video Testimonials
+    </p>
+
+    <!-- Main heading -->
+    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+        See What Our Clients Say
+    </h2>
+
+    <!-- Underline accent -->
+    <div class="mt-4 flex justify-center">
+        <span class="w-16 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full"></span>
+    </div>
+
+</div>
+
+
+        <div id="testimonial-desktop-grid" class="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <!-- Desktop cards will be injected here -->
         </div>
 
-        <!-- Testimonials Grid -->
-        <div id="testimonial-text-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            <!-- Content will be injected by JavaScript -->
+        <div id="testimonial-mobile-slider" class="md:hidden w-full max-w-md mx-auto">
+            <div id="testimonial-mobile-container" class="relative w-full min-h-[400px]">
+                <!-- Mobile cards will be injected here -->
+            </div>
+            
+            <div class="mt-8 flex items-center justify-center gap-6">
+                <button id="testimonial-text-prev" class="w-12 h-12 rounded-full bg-gradient-to-r from-[#1e0094] to-blue-900 text-white flex items-center justify-center hover:from-blue-800 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 group">
+                    <svg class="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                
+                <div id="testimonial-text-slide-counter" class="text-[#1e0094] font-bold text-xl">
+                    <span id="testimonial-text-current-slide">1</span> / <span id="testimonial-text-total-slides">8</span>
+                </div>
+                
+                <button id="testimonial-text-next" class="w-12 h-12 rounded-full bg-gradient-to-r from-[#1e0094] to-blue-900 text-white flex items-center justify-center hover:from-blue-800 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 group">
+                    <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
+            </div>
         </div>
 
     </div>
@@ -42,24 +63,51 @@
     }
     
     @keyframes float {
-        0%, 100% { transform: translateY(0); }
+        0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-10px); }
     }
     
-    @keyframes card-enter {
-        0% { 
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(30, 0, 148, 0.3); }
+        50% { box-shadow: 0 0 30px rgba(30, 0, 148, 0.5); }
+    }
+    
+    @keyframes shimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+    
+    @keyframes fade-in-up {
+        from { 
             opacity: 0; 
-            transform: translateY(50px) scale(0.9); 
+            transform: translateY(30px) scale(0.95); 
         }
-        100% { 
+        to { 
             opacity: 1; 
             transform: translateY(0) scale(1); 
         }
     }
     
-    @keyframes glow {
-        0%, 100% { box-shadow: 0 10px 30px rgba(30, 0, 148, 0.3); }
-        50% { box-shadow: 0 15px 40px rgba(30, 0, 148, 0.5); }
+    @keyframes slide-in-left {
+        from { 
+            opacity: 0; 
+            transform: translateX(-40px) scale(0.95); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateX(0) scale(1); 
+        }
+    }
+    
+    @keyframes slide-in-right {
+        from { 
+            opacity: 0; 
+            transform: translateX(40px) scale(0.95); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateX(0) scale(1); 
+        }
     }
     
     .animate-spin-slow {
@@ -70,71 +118,200 @@
         animation: spin-reverse 25s linear infinite;
     }
     
-    /* Card Styles */
-    .testimonial-card {
-        position: relative;
-        transform-style: preserve-3d;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation: float 6s ease-in-out infinite;
-        animation-play-state: paused;
-        opacity: 0;
-        transform: translateY(50px);
-    }
+    /* Enhanced Desktop Card Styles */
+    .testimonial-text-card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 1;                  /* ✅ visible */
+    transform: translateY(0) scale(1);
+}
+
     
-    .testimonial-card.animated {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .testimonial-card:hover {
+    .testimonial-text-card.animated {
         animation-play-state: running;
-        transform: translateY(-12px) scale(1.03) rotateX(2deg);
-        box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
-        z-index: 10;
-        animation: glow 2s ease-in-out infinite;
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
     
-    .testimonial-card::before {
+    .testimonial-text-card:hover {
+        transform: translateY(-15px) scale(1.05) rotateX(3deg);
+        box-shadow: 0 30px 60px -12px rgba(30, 0, 148, 0.4);
+        z-index: 20;
+        animation: pulse-glow 2s ease-in-out infinite, float 6s ease-in-out infinite;
+    }
+    
+    .testimonial-text-card::before {
         content: '';
         position: absolute;
-        inset: -1px;
-        background: linear-gradient(45deg, #1e40af, #dc2626, #1e40af);
+        inset: -2px;
+        background: linear-gradient(
+            45deg, 
+            rgba(255, 255, 255, 0.2), 
+            rgba(30, 0, 148, 0.6), 
+            rgba(255, 255, 255, 0.2)
+        );
         border-radius: 24px;
         z-index: -1;
         opacity: 0;
         transition: opacity 0.4s ease;
+        background-size: 200% 200%;
+        animation: shimmer 3s linear infinite paused;
     }
     
-    .testimonial-card:hover::before {
-        opacity: 0.3;
+    .testimonial-text-card:hover::before {
+        opacity: 1;
+        animation-play-state: running;
+    }
+    
+    .testimonial-text-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(145deg, 
+            rgba(30, 0, 148, 0.9) 0%, 
+            rgba(30, 58, 138, 0.85) 50%, 
+            rgba(30, 0, 148, 0.9) 100%
+        );
+        border-radius: 22px;
+        z-index: -2;
     }
     
     .quote-icon {
         transition: all 0.5s ease;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
     
-    .testimonial-card:hover .quote-icon {
-        transform: rotate(5deg) scale(1.2);
-        filter: drop-shadow(0 4px 8px rgba(220, 38, 38, 0.3));
+    .testimonial-text-card:hover .quote-icon {
+        transform: rotate(8deg) scale(1.2);
+        filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
     }
     
     .rating-star {
+        transition: all 0.3s ease;
         animation: float 3s ease-in-out infinite;
     }
     
-    .rating-star:nth-child(2) { animation-delay: 0.2s; }
-    .rating-star:nth-child(3) { animation-delay: 0.4s; }
-    .rating-star:nth-child(4) { animation-delay: 0.6s; }
-    .rating-star:nth-child(5) { animation-delay: 0.8s; }
+    .rating-star:nth-child(2) { animation-delay: 0.1s; }
+    .rating-star:nth-child(3) { animation-delay: 0.2s; }
+    .rating-star:nth-child(4) { animation-delay: 0.3s; }
+    .rating-star:nth-child(5) { animation-delay: 0.4s; }
     
-    /* Hover effects */
-    .hover-glow {
+    .testimonial-text-card:hover .rating-star {
+        transform: scale(1.2);
+    }
+    
+    /* Mobile Card Styles */
+    .mobile-testimonial-text-card {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        z-index: 1;
+    }
+    
+    .mobile-testimonial-text-card.active {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+        z-index: 10;
+        position: relative;
+        animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    .mobile-testimonial-text-card.slide-left {
+        animation: slide-in-left 0.6s ease-out forwards;
+    }
+    
+    .mobile-testimonial-text-card.slide-right {
+        animation: slide-in-right 0.6s ease-out forwards;
+    }
+    
+    /* Enhanced Review Text */
+    .review-text {
+        position: relative;
         transition: all 0.3s ease;
     }
     
-    .testimonial-card:hover .hover-glow {
+    .testimonial-text-card:hover .review-text {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Client Info Styling */
+    .client-info {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-text-card:hover .client-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left 0.5s ease;
+        animation: shimmer 2s linear infinite;
+    }
+    
+    /* Floating Animation for All Cards */
+    .testimonial-text-card {
+        animation: float 6s ease-in-out infinite paused;
+    }
+    
+    .testimonial-text-card:hover,
+    .mobile-testimonial-text-card.active {
+        animation-play-state: running;
+    }
+    
+    /* Enhanced Buttons */
+    #testimonial-text-prev,
+    #testimonial-text-next {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #testimonial-text-prev::before,
+    #testimonial-text-next::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #1e0094, #3b82f6, #1e0094);
+        border-radius: 50%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    #testimonial-text-prev:hover::before,
+    #testimonial-text-next:hover::before {
+        opacity: 1;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+        .testimonial-text-card {
+            min-height: 380px;
+        }
+        
+        .mobile-testimonial-text-card.active {
+            box-shadow: 0 20px 40px rgba(30, 0, 148, 0.25);
+        }
     }
 </style>

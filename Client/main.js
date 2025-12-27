@@ -1,7 +1,7 @@
 // main.js
 
 // 1. IMPORT PATHS
-import { initNavbar } from './src/components/Navbar/Navbar.js';
+import { initNavbar } from '/src/components/Navbar/Navbar.js';
 // Correct path based on your screenshot:
 import { initHero } from './src/pages/Home/Hero/Hero.js'; 
 import { initAbout } from './src/pages/Home/About_Company/About_Company.js';
@@ -11,7 +11,8 @@ import { initTestimonials } from './src/pages/Home/Testimonials/Testimonials.js'
 import { initBrand } from './src/pages/Home/Brand/Brand.js';
 import { initTestimonialsText } from './src/pages/Home/Testimonal_Text/Testimonal_Text.js';
 import { initContact } from './src/pages/Home/Contact/Contact.js';
-import { initFooter } from './src/pages/Home/Footer/Footer.js';
+import { initFooter } from '/src/components/Footer/Footer.js';
+// import {}
 
 
 // 2. LOADER FUNCTION
@@ -48,7 +49,7 @@ async function loadComponent(containerId, htmlPath, initFunction) {
 // 3. START APP
 async function startApp() {
     // Load Navbar
-    await loadComponent('navbar-container', './src/components/Navbar/Navbar.html', initNavbar);
+    await loadComponent('navbar-container', '/src/components/Navbar/Navbar.html', initNavbar);
 
     // Load Hero (Includes /Home/ now)
     await loadComponent('hero-container', './src/pages/Home/Hero/Hero.html', initHero);
@@ -60,7 +61,7 @@ async function startApp() {
     await loadComponent('brand-container', './src/pages/Home/Brand/Brand.html', initBrand);
     await loadComponent('testimonialsText-container', './src/pages/Home/Testimonal_Text/Testimonal_Text.html', initTestimonialsText);
     await loadComponent('contact-container', './src/pages/Home/Contact/Contact.html', initContact);
-    await loadComponent('footer-container', './src/pages/Home/Footer/Footer.html', initFooter   );
+    await loadComponent('footer-container', '/src/components/Footer/Footer.html', initFooter   );
 }
 
 startApp();
