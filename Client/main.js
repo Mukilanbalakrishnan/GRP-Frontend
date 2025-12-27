@@ -38,12 +38,20 @@ async function loadComponent(containerId, htmlPath, initFunction) {
 }
 
 // 3. START APP
-async function startApp() {
-    // Load Navbar
-    await loadComponent('navbar-container', './src/components/Navbar/Navbar.html', initNavbar);
+const BASE = "/GRP/GRP-Frontend/client";
 
-    // Load Hero (Includes /Home/ now)
-    await loadComponent('hero-container', './src/pages/Home/Hero/Hero.html', initHero);
+async function startApp() {
+    await loadComponent(
+        'navbar-container',
+        `${BASE}/src/components/Navbar/Navbar.html`,
+        initNavbar
+    );
+
+    await loadComponent(
+        'hero-container',
+        `${BASE}/src/pages/Home/Hero/Hero.html`,
+        initHero
+    );
 }
 
 startApp();
