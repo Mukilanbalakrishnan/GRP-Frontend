@@ -78,115 +78,59 @@
 </section>
 
 <style>
-    /* Custom animations */
-    @keyframes spin-slow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
+    /* Standard Animations */
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse-slow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
     
-    @keyframes spin-reverse {
-        from { transform: rotate(360deg); }
-        to { transform: rotate(0deg); }
+    .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+    .animate-spin-reverse { animation: spin-reverse 25s linear infinite; }
+    .animate-fade-in { animation: fade-in 1s ease-out; }
+    .animate-slide { animation: slide 3s linear infinite; }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-pulse-slow { animation: pulse-slow 2s ease-in-out infinite; }
+
+    /* --- MOBILE ONLY ANIMATIONS (The "Super" Auto-Effect) --- */
+    @keyframes mobile-card-pulse {
+        0%, 100% { transform: scale(1); border-color: #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        50% { transform: scale(1.03); border-color: #1e3a8a; box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.15); }
     }
-    
-    @keyframes fade-in {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+
+    @keyframes mobile-line-sweep {
+        0%, 100% { transform: scaleX(0); }
+        50% { transform: scaleX(1); }
     }
-    
-    @keyframes slide {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
+
+    @keyframes mobile-opacity-pulse {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 0.05; }
     }
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
+
+    /* Mobile Logic: Apply animations automatically */
+    @media (max-width: 768px) {
+        .logo-card {
+            animation: mobile-card-pulse 3s ease-in-out infinite;
+        }
+        .logo-card .mobile-anim-line {
+            animation: mobile-line-sweep 3s ease-in-out infinite;
+        }
+        .logo-card .mobile-anim-overlay {
+            animation: mobile-opacity-pulse 3s ease-in-out infinite;
+        }
+        /* Force text color on mobile active state */
+        .logo-card .mobile-text-target {
+            color: #1e3a8a; /* Blue-950 */
+            transition: color 1.5s;
+        }
     }
-    
-    @keyframes pulse-slow {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-    }
-    
-    @keyframes glow {
-        0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-        50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
-    }
-    
-    @keyframes bounce-in {
-        0% { transform: scale(0.3); opacity: 0; }
-        50% { transform: scale(1.05); }
-        70% { transform: scale(0.9); }
-        100% { transform: scale(1); opacity: 1; }
-    }
-    
-    .animate-spin-slow {
-        animation: spin-slow 20s linear infinite;
-    }
-    
-    .animate-spin-reverse {
-        animation: spin-reverse 25s linear infinite;
-    }
-    
-    .animate-fade-in {
-        animation: fade-in 1s ease-out;
-    }
-    
-    .animate-slide {
-        animation: slide 3s linear infinite;
-    }
-    
-    .animate-float {
-        animation: float 6s ease-in-out infinite;
-    }
-    
-    .animate-pulse-slow {
-        animation: pulse-slow 2s ease-in-out infinite;
-    }
-    
-    /* Logo card enhanced animations */
+
+    /* Desktop Logic: Ensure smooth hover transitions */
     .logo-card {
-        position: relative;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation: bounce-in 0.6s ease-out backwards;
+        -webkit-tap-highlight-color: transparent;
     }
-    
-    .logo-card:hover {
-        transform: translateY(-8px) scale(1.05);
-        animation: glow 2s ease-in-out infinite;
-        z-index: 10;
-    }
-    
-    .logo-card::before {
-        content: '';
-        position: absolute;
-        inset: -1px;
-        background: linear-gradient(45deg, #1e40af, #dc2626);
-        border-radius: 12px;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .logo-card:hover::before {
-        opacity: 1;
-    }
-    
-    .logo-icon {
-        transition: all 0.3s ease;
-    }
-    
-    .logo-card:hover .logo-icon {
-        transform: rotate(12deg) scale(1.1);
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-    }
-    
-    .stat-item {
-        transition: all 0.3s ease;
-    }
-    
-    .stat-item:hover {
-        transform: scale(1.05);
-    }
+    .stat-item { transition: all 0.3s ease; }
+    .stat-item:hover { transform: scale(1.05); }
 </style>

@@ -10,8 +10,37 @@
     <div class="service-header-animate w-24 h-1.5 bg-red-600 mx-auto rounded-full opacity-0 scale-x-0"></div>
   </div>
 
-  <div id="services-grid" class="max-w-screen-xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="max-w-screen-xl mx-auto px-6">
+    <!-- Desktop Grid (hidden on mobile) -->
+    <div id="desktop-grid" class="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Desktop cards will be inserted here -->
     </div>
+    
+    <!-- Mobile Slider (shown on mobile) -->
+    <div id="mobile-slider" class="md:hidden">
+      <div id="mobile-slider-container" class="relative">
+        <!-- Mobile cards will be inserted here -->
+      </div>
+      
+      <!-- Mobile Navigation -->
+      <div class="mt-8 flex items-center justify-center gap-6">
+        <button id="mobile-prev" class="w-12 h-12 rounded-full bg-blue-950 text-white flex items-center justify-center hover:bg-blue-900 transition-colors shadow-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <div id="mobile-slide-counter" class="text-blue-950 font-semibold text-sm">
+          <span id="current-slide">1</span> / <span id="total-slides">6</span>
+        </div>
+        
+        <button id="mobile-next" class="w-12 h-12 rounded-full bg-blue-950 text-white flex items-center justify-center hover:bg-blue-900 transition-colors shadow-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
 </section>
-

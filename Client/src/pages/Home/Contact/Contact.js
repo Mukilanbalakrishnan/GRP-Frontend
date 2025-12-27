@@ -19,7 +19,7 @@ const contactData = [
     },
     { 
         type: "link",
-        href: "https://goo.gl/maps/1",
+        href: "https://maps.app.goo.gl/Fhanvp3cz7dybVLEA",
         target: "_blank",
         label: "Visit Our HQ", 
         value: "Coimbatore, Tamil Nadu", 
