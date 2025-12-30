@@ -1,46 +1,40 @@
-import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
+// Navbar Logic (Vanilla JS)
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    let isOpen = false;
 
-// Navbar Logic
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const menuIcon = document.getElementById('menu-icon');
-let isOpen = false;
+    if (menuBtn && mobileMenu && menuIcon) {
+        menuBtn.addEventListener('click', () => {
+            isOpen = !isOpen;
 
-if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-        isOpen = !isOpen;
+            if (isOpen) {
+                // Open Menu
+                menuIcon.classList.replace('ph-list', 'ph-x');
+                mobileMenu.classList.remove('hidden');
 
-        if (isOpen) {
-            menuIcon.classList.replace('ph-list', 'ph-x');
-            mobileMenu.classList.remove('hidden');
+                // Simple entry animation
+                requestAnimationFrame(() => {
+                    mobileMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.transform = 'translateY(0)';
+                });
+            } else {
+                // Close Menu
+                menuIcon.classList.replace('ph-x', 'ph-list');
 
-            animate(
-                mobileMenu,
-                { height: ["0px", "auto"], opacity: [0, 1] },
-                { duration: 0.3, easing: "ease-out" }
-            );
+                // Simple exit animation
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateY(-10px)';
 
-            animate(
-                ".mobile-link",
-                { opacity: [0, 1], x: [-20, 0] },
-                { delay: stagger(0.05), duration: 0.3 }
-            );
-
-        } else {
-            menuIcon.classList.replace('ph-x', 'ph-list');
-
-            const closeAnimation = animate(
-                mobileMenu,
-                { height: "0px", opacity: 0 },
-                { duration: 0.2, easing: "ease-in" }
-            );
-
-            closeAnimation.finished.then(() => {
-                mobileMenu.classList.add('hidden');
-            });
-        }
-    });
-}
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        });
+    }
+});
 
 // Form Logic (Basic interaction)
 const form = document.getElementById('contactForm');
