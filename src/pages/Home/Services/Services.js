@@ -69,14 +69,8 @@ export function initServices() {
     }
     
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     /* Card hover effects for both desktop and mobile */
@@ -85,63 +79,39 @@ export function initServices() {
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     
-    .service-card:hover {
-      transform: translateY(-8px) scale(1.02);
-    }
+    .service-card:hover { transform: translateY(-8px) scale(1.02); }
     
-    .icon-container {
-      position: relative;
-      overflow: hidden;
-    }
+    .icon-container { position: relative; overflow: hidden; }
     
     .icon-container::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
       transform: translate(-50%, -50%);
       transition: width 0.6s, height 0.6s;
     }
     
-    .service-card:hover .icon-container::before {
-      width: 120px;
-      height: 120px;
-    }
+    .service-card:hover .icon-container::before { width: 120px; height: 120px; }
     
-    .text-shine {
-      color: white;
-      position: relative;
-      display: inline-block;
-    }
+    .text-shine { color: white; position: relative; display: inline-block; }
     
     .text-shine::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-      );
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
       transition: left 0.8s ease;
     }
     
-    .service-card:hover .text-shine::after {
-      left: 100%;
-    }
+    .service-card:hover .text-shine::after { left: 100%; }
     
     .sparkle {
       position: absolute;
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       background: white;
       border-radius: 50%;
       opacity: 0;
@@ -153,18 +123,9 @@ export function initServices() {
     }
     
     @keyframes sparkle-fly {
-      0% {
-        opacity: 0;
-        transform: translate(0, 0) scale(0);
-      }
-      20% {
-        opacity: 1;
-        transform: translate(var(--tx), var(--ty)) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(var(--tx), var(--ty)) scale(0);
-      }
+      0% { opacity: 0; transform: translate(0, 0) scale(0); }
+      20% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1); }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
     }
   `;
   document.head.appendChild(style);
@@ -172,14 +133,23 @@ export function initServices() {
   // Set total slides count
   totalSlidesEl.textContent = servicesData.length;
 
-  // Create desktop cards
+  // Create cards
   servicesData.forEach((item, index) => {
     createCard(item, desktopGrid, false, index);
+    createCard(item, mobileSliderContainer, true, index);
   });
 
-  // Create mobile cards
-  servicesData.forEach((item, index) => {
-    createCard(item, mobileSliderContainer, true, index);
+  // --- HEADER ANIMATION (MOVED HERE TO RUN ON ALL DEVICES) ---
+  inView("#services-section", () => {
+    animate(
+      ".service-header-animate",
+      { opacity: 1, scale: 1 },
+      {
+        duration: 0.8,
+        delay: stagger(0.2),
+        easing: [0.34, 1.56, 0.64, 1],
+      }
+    );
   });
 
   // Initialize mobile slider if on mobile
@@ -212,72 +182,44 @@ function createCard(item, container, isMobile, index) {
     : `service-card group relative bg-blue-950 rounded-3xl p-8 overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:z-10`;
 
   card.innerHTML = `
-    <!-- Animated Background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-950
-                transition-all duration-700 group-hover:scale-110"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-950 transition-all duration-700 group-hover:scale-110"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-1000"></div>
+    <div class="absolute top-0 left-0 w-full h-1 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left shadow-lg shadow-red-600/50"></div>
     
-    <!-- Shimmer Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
-                opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] 
-                transition-all duration-1000"></div>
-
-    <!-- Top Accent Line -->
-    <div class="absolute top-0 left-0 w-full h-1 bg-red-600
-                scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left
-                shadow-lg shadow-red-600/50"></div>
-    
-    <!-- Floating Sparkles -->
     <div class="sparkle" style="--tx: -20px; --ty: -15px; top: 30%; left: 30%; animation-delay: 0.1s"></div>
     <div class="sparkle" style="--tx: 25px; --ty: -10px; top: 20%; left: 70%; animation-delay: 0.3s"></div>
     <div class="sparkle" style="--tx: -15px; --ty: 20px; top: 70%; left: 20%; animation-delay: 0.5s"></div>
     <div class="sparkle" style="--tx: 20px; --ty: 15px; top: 80%; left: 80%; animation-delay: 0.7s"></div>
 
     <div class="relative z-10">
-      <!-- Icon Container with Enhanced Effects -->
-      <div class="icon-container w-14 h-14 bg-blue-800 rounded-2xl flex items-center justify-center mb-6
-                  transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br ${item.gradient}
-                  group-hover:shadow-lg group-hover:shadow-red-500/30">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
-             class="w-8 h-8 text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
+      <div class="icon-container w-14 h-14 bg-blue-800 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br ${item.gradient} group-hover:shadow-lg group-hover:shadow-red-500/30">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
           ${item.icon}
         </svg>
-        <!-- Icon Glow -->
         <div class="absolute inset-0 rounded-2xl bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-700"></div>
       </div>
 
-      <!-- Title with Shine Effect -->
-      <h3 class="text-shine text-2xl font-bold text-white mb-3 transition-all duration-500 
-                 group-hover:text-white/90 group-hover:-translate-y-1">
+      <h3 class="text-shine text-2xl font-bold text-white mb-3 transition-all duration-500 group-hover:text-white/90 group-hover:-translate-y-1">
         ${item.title}
       </h3>
 
-      <!-- Description with Slide-up -->
-      <p class="text-blue-200 text-sm leading-relaxed mb-6 transition-all duration-500 
-                transform translate-y-0 group-hover:translate-y-[-5px] group-hover:text-blue-100">
+      <p class="text-blue-200 text-sm leading-relaxed mb-6 transition-all duration-500 transform translate-y-0 group-hover:translate-y-[-5px] group-hover:text-blue-100">
         ${item.desc}
       </p>
 
-      <!-- CTA Button with Enhanced Effects -->
       <div class="relative overflow-hidden rounded-lg inline-block">
-        <span class="text-red-500 font-bold text-sm uppercase tracking-wider
-                     group-hover:text-white transition-colors duration-300 flex items-center gap-2 relative z-10">
+        <span class="text-red-500 font-bold text-sm uppercase tracking-wider group-hover:text-white transition-colors duration-300 flex items-center gap-2 relative z-10">
           LEARN MORE 
           <span class="transform transition-transform duration-500 group-hover:translate-x-2 group-hover:scale-110">→</span>
         </span>
-        <!-- Button Background Animation -->
-        <div class="absolute inset-0 bg-gradient-to-r from-red-600/0 via-red-600/20 to-red-600/0 
-                    translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-red-600/0 via-red-600/20 to-red-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
       </div>
     </div>
     
-    <!-- Corner Accents -->
-    <div class="absolute top-4 right-4 w-3 h-3 border-t border-r border-white/20 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"></div>
-    <div class="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-white/20 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300"></div>
+    <div class="absolute top-4 right-4 w-3 h-3 border-t border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"></div>
+    <div class="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300"></div>
   `;
 
-  // Add hover effects for both desktop and mobile
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -320,44 +262,24 @@ function initMobileSlider() {
   if (!mobileCards.length) return;
   
   function updateMobileSlider() {
-    // Hide all cards
-    mobileCards.forEach(card => {
-      card.classList.remove('active');
-    });
-    
-    // Show current card
+    mobileCards.forEach(card => card.classList.remove('active'));
     mobileCards[currentSlide].classList.add('active');
-    
-    // Update counter
     currentSlideEl.textContent = currentSlide + 1;
   }
   
-  // Navigation buttons
   if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      if (currentSlide > 0) {
-        currentSlide--;
-      } else {
-        currentSlide = mobileCards.length - 1;
-      }
+    prevBtn.onclick = () => {
+      currentSlide = (currentSlide > 0) ? currentSlide - 1 : mobileCards.length - 1;
       updateMobileSlider();
-    });
+    };
   }
   
   if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      if (currentSlide < mobileCards.length - 1) {
-        currentSlide++;
-      } else {
-        currentSlide = 0;
-      }
+    nextBtn.onclick = () => {
+      currentSlide = (currentSlide < mobileCards.length - 1) ? currentSlide + 1 : 0;
       updateMobileSlider();
-    });
+    };
   }
-  
- 
-  
-
   
   updateMobileSlider();
 }
@@ -373,15 +295,8 @@ function initDesktopGrid() {
   
   // Run Animation when scrolled into view
   inView("#services-section", () => {
-    animate(
-      ".service-header-animate",
-      { opacity: 1, scale: 1 },
-      {
-        duration: 0.8,
-        delay: stagger(0.2),
-        easing: [0.34, 1.56, 0.64, 1],
-      }
-    );
+    // NOTE: Header animation was removed from here and moved to initServices
+    // so it runs on both desktop and mobile.
 
     animate(
       "#desktop-grid .service-card",
