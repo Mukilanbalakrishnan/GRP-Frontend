@@ -167,25 +167,6 @@ function setupNavbarScroll() {
     } else {
       nav.classList.remove('scrolled');
     }
-    
-    // Hide/show on scroll direction
-    if (currentScroll > lastScroll && currentScroll > 100) {
-      // Scrolling down
-      animate(
-        nav,
-        { y: -80 },
-        { duration: 0.3 }
-      );
-    } else {
-      // Scrolling up
-      animate(
-        nav,
-        { y: 0 },
-        { duration: 0.3 }
-      );
-    }
-    
-    lastScroll = currentScroll;
   });
 }
 
