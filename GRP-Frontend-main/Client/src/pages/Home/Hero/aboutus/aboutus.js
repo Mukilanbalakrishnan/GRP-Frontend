@@ -137,19 +137,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300); // 300ms matches standard transition
     }
 
+    // -------------------------------------------------------------
+    // Auto-Scroll Logic
+    // -------------------------------------------------------------
+    let autoScrollInterval;
+    const AUTO_SCROLL_DELAY = 5000; // 5 seconds
+    const carouselContainer = document.getElementById('reviews-carousel');
+
+    function startAutoScroll() {
+        stopAutoScroll(); // Clear any existing
+
+        autoScrollInterval = setInterval(() => {
+            currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+            updateReview(currentReviewIndex);
+        }, AUTO_SCROLL_DELAY);
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+        }
+    }
+
     if (prevBtn && nextBtn) {
         prevBtn.addEventListener('click', () => {
             console.log("Prev Clicked");
             currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
             updateReview(currentReviewIndex);
+            startAutoScroll(); // Reset timer
         });
 
         nextBtn.addEventListener('click', () => {
             console.log("Next Clicked");
             currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
             updateReview(currentReviewIndex);
+            startAutoScroll(); // Reset timer
         });
     } else {
         console.error("Navigation buttons not found!");
     }
+
+    // Independent Hover Logic
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', () => {
+            stopAutoScroll();
+        });
+        carouselContainer.addEventListener('mouseleave', () => {
+            startAutoScroll();
+        });
+    }
+
+    // Start initial timer
+    startAutoScroll();
 });
