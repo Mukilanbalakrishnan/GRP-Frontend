@@ -1,42 +1,59 @@
-    <nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 bg-white/80 backdrop-blur-md">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+<nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 bg-white/80 backdrop-blur-md">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         
-        <a href="/index.html" class="flex items-center space-x-2">
-            <div class="bg-blue-600 text-white p-1.5 rounded-lg">
-                <i class="ph-bold ph-cube text-xl"></i>
-            </div>
-            <span class="self-center text-2xl font-bold whitespace-nowrap text-gray-900">Brand.</span>
-        </a>
+    <!-- Brand -->
+    <a href="/index.html" class="flex items-center space-x-2">
+      <div class="bg-blue-600 text-white p-1.5 rounded-lg">
+        <i class="ph-bold ph-cube text-xl"></i>
+      </div>
+      <span class="self-center text-2xl font-bold whitespace-nowrap text-gray-900">
+        Brand.
+      </span>
+    </a>
 
+    <!-- Mobile button -->
+    <button
+      id="menu-btn"
+      type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+      <i class="ph ph-list text-2xl" id="menu-icon"></i>
+    </button>
 
-            <button id="menu-btn" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                <i class="ph ph-list text-2xl" id="menu-icon"></i>
-            </button>
+    <!-- Desktop Menu -->
+    <div class="hidden w-full md:block md:w-auto">
+      <ul class="font-medium flex flex-col md:flex-row md:items-center md:space-x-8
+           p-0 md:p-0 mt-0 md:mt-0
+           border border-gray-100 md:border-0 rounded-lg">
 
-            <div class="hidden w-full md:block md:w-auto">
-                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:items-center md:mt-0 md:border-0">
-                    <li><a href="/index.html" class="block py-2 px-3 text-blue-700 rounded-sm md:bg-transparent md:p-0" aria-current="page">Home</a></li>
-                    <li><a href="/src/pages/aboutus/aboutus.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">About Us</a></li>
-                    <li><a href="/src/pages/Service/service.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Services</a></li>
-                    <!-- <li><a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Products</a></li> -->
-                    <li><a href="/src/pages/Gallery/Gallery.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Gallery</a></li>
-                    <li>
-                        <a href="/src/pages/Contact/Contact.html" class="block py-2 px-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 md:px-5 md:py-2.5 transition-colors">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/src/pages/aboutus/aboutus.html" class="nav-link">About Us</a></li>
+        <li><a href="/src/pages/Service/service.html" class="nav-link">Services</a></li>
+        <li><a href="/src/pages/Gallery/Gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="/src/pages/Contact/Contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
 
-        <div id="mobile-menu" class="hidden md:hidden overflow-hidden bg-white border-b border-gray-200">
-            <ul class="flex flex-col p-4 font-medium space-y-2">
-                <li><a href="/index.html" class="mobile-link block py-2 px-3 text-blue-600 bg-blue-50 rounded-lg">Home</a></li>
-                <li><a href="/src/pages/aboutus/aboutus.html" class="mobile-link block py-2 px-3 text-gray-900 rounded-lg hover:bg-gray-100">About Us</a></li>
-                <li><a href="/src/pages/Service/service.html" class="mobile-link block py-2 px-3 text-gray-900 rounded-lg hover:bg-gray-100">Services</a></li>
-                <!-- <li><a href="#" class="mobile-link block py-2 px-3 text-gray-900 rounded-lg hover:bg-gray-100">Products</a></li> -->
-                <li><a href="/src/pages/Gallery/Gallery.html" class="mobile-link block py-2 px-3 text-gray-900 rounded-lg hover:bg-gray-100">Gallery</a></li>
-                <li><a href="/src/pages/Contact/Contact.html" class="mobile-link block py-2 px-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden overflow-hidden bg-white border-b border-gray-200">
+  <ul class="flex flex-col gap-2 p-4 font-medium">
+    <li><a href="/index.html" class="mobile-link">Home</a></li>
+    <li><a href="/src/pages/aboutus/aboutus.html" class="mobile-link">About Us</a></li>
+    <li><a href="/src/pages/Service/service.html" class="mobile-link">Services</a></li>
+    <li><a href="/src/pages/Gallery/Gallery.html" class="mobile-link">Gallery</a></li>
+    <li><a href="/src/pages/Contact/Contact.html" class="mobile-link">Contact Us</a></li>
+  </ul>
+</div>
 
-    
+</nav>
+<style>
+  .nav-link {
+    @apply block py-2 px-3 md:p-0 text-gray-900 rounded-sm whitespace-nowrap
+           hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700;
+  }
+
+  .mobile-link {
+    @apply block py-2 px-3 text-gray-900 rounded-lg whitespace-nowrap
+           hover:bg-gray-100;
+  }
+</style>

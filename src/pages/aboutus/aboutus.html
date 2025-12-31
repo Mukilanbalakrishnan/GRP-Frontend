@@ -67,9 +67,9 @@
         }
 
         .hover-glow:hover {
-            box-shadow: 0 0 20px 5px rgba(255, 166, 0, 0.6);
-            transform: translateY(-2px);
-            border: 1px solid rgba(255, 166, 0, 0.5);
+            box-shadow: 0 0 35px 10px rgba(255, 179, 0, 0.5);
+            transform: translateY(-4px);
+            border-color: rgba(255, 179, 0, 0.6) !important;
             z-index: 10;
         }
 
@@ -102,20 +102,22 @@
     <!-- INTRO Section: Diamond Image + Text -->
     <section class="max-w-screen-xl mx-auto py-20 px-4">
         <div class="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32">
-            <!-- Diamond Image -->
-            <div class="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
-                <div class="w-full h-full diamond-container bg-[#1E3A8A] shadow-xl">
-                    <!-- Using a placeholder or dark blue per wireframe -->
+            <!-- Diamond Image Wrapper -->
+            <div class="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
+                <!-- Main Image Diamond with Clean White Frame -->
+                <div
+                    class="relative w-48 h-48 md:w-64 md:h-64 bg-white rounded-3xl transform rotate-45 overflow-hidden shadow-2xl z-10 border-[6px] border-white">
                     <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop"
-                        alt="Team" class="diamond-inner opacity-90 hover:opacity-100 transition-opacity duration-300">
+                        alt="Team"
+                        class="absolute w-[145%] h-[145%] max-w-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 object-cover">
                 </div>
             </div>
 
             <!-- Text Block -->
             <div
-                class="hover-glow bg-[#1E3A8A] text-white p-8 md:p-12 rounded-xl shadow-lg max-w-lg w-full text-center md:text-left h-fit self-center border border-transparent">
-                <h2 class="text-2xl font-bold mb-4">About us Text</h2>
-                <p class="text-blue-100 leading-relaxed">
+                class="hover-glow bg-white text-gray-900 p-8 md:p-12 rounded-xl shadow-lg max-w-lg w-full text-center md:text-left h-fit self-center border border-blue-100">
+                <h2 class="text-2xl font-bold mb-4 text-blue-900">About us Text</h2>
+                <p class="text-gray-600 leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
                 </p>
@@ -126,7 +128,8 @@
     <!-- WHY CHOOSE US Section -->
     <section class="max-w-screen-xl mx-auto py-16 px-4">
         <!-- Header -->
-        <div class="bg-[#1E3A8A] text-white py-3 px-8 rounded-lg inline-block mb-12 w-full text-center">
+        <div
+            class="bg-blue-50 text-blue-900 py-3 px-8 rounded-lg inline-block mb-12 w-full text-center border border-blue-100">
             <h2 class="text-xl md:text-2xl font-bold">Why Choose Us</h2>
         </div>
 
@@ -134,35 +137,35 @@
             <!-- Left Column: 3 Horizontal Bars -->
             <div class="flex-1 flex flex-col gap-6 justify-center">
                 <div
-                    class="hover-glow bg-[#1E3A8A] p-6 rounded-xl w-full shadow-md border border-transparent flex items-start space-x-4">
-                    <div class="bg-white/10 p-3 rounded-lg flex-shrink-0">
-                        <i class="ph-bold ph-house-line text-2xl text-blue-200"></i>
+                    class="hover-glow bg-white p-6 rounded-xl w-full shadow-md border border-blue-50 flex items-start space-x-4 group">
+                    <div class="bg-blue-50 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                        <i class="ph-bold ph-house-line text-2xl text-blue-600"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-1">Premium Roofing Materials</h3>
-                        <p class="text-blue-100/80 text-sm">We use only high-grade, weather-resistant materials to
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Premium Roofing Materials</h3>
+                        <p class="text-gray-600 text-sm">We use only high-grade, weather-resistant materials to
                             ensure your roof stands strong against the elements for decades.</p>
                     </div>
                 </div>
                 <div
-                    class="hover-glow bg-[#1E3A8A] p-6 rounded-xl w-full shadow-md border border-transparent flex items-start space-x-4">
-                    <div class="bg-white/10 p-3 rounded-lg flex-shrink-0">
-                        <i class="ph-bold ph-shield-check text-2xl text-blue-200"></i>
+                    class="hover-glow bg-white p-6 rounded-xl w-full shadow-md border border-blue-50 flex items-start space-x-4 group">
+                    <div class="bg-blue-50 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                        <i class="ph-bold ph-shield-check text-2xl text-blue-600"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-1">Licensed & Certified Team</h3>
-                        <p class="text-blue-100/80 text-sm">Our expert roofers are fully licensed and insured,
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Licensed & Certified Team</h3>
+                        <p class="text-gray-600 text-sm">Our expert roofers are fully licensed and insured,
                             delivering safety-first installation with a 100% satisfaction guarantee.</p>
                     </div>
                 </div>
                 <div
-                    class="hover-glow bg-[#1E3A8A] p-6 rounded-xl w-full shadow-md border border-transparent flex items-start space-x-4">
-                    <div class="bg-white/10 p-3 rounded-lg flex-shrink-0">
-                        <i class="ph-bold ph-clock-countdown text-2xl text-blue-200"></i>
+                    class="hover-glow bg-white p-6 rounded-xl w-full shadow-md border border-blue-50 flex items-start space-x-4 group">
+                    <div class="bg-blue-50 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                        <i class="ph-bold ph-clock-countdown text-2xl text-blue-600"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-1">On-Time Project Delivery</h3>
-                        <p class="text-blue-100/80 text-sm">We value your time. Our efficient workflow ensures your
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">On-Time Project Delivery</h3>
+                        <p class="text-gray-600 text-sm">We value your time. Our efficient workflow ensures your
                             roofing project is completed on schedule without compromising quality.</p>
                     </div>
                 </div>
@@ -198,57 +201,62 @@
     <!-- WHAT CLIENT SAYS Section -->
     <section class="max-w-screen-xl mx-auto py-16 px-4 mb-20">
         <!-- Header -->
-        <div class="bg-[#1E3A8A] text-white py-3 px-8 rounded-lg w-full text-center mb-12">
+        <div class="bg-blue-50 text-blue-900 py-3 px-8 rounded-lg w-full text-center mb-12 border border-blue-100">
             <h2 class="text-xl md:text-2xl font-bold">What Client Says</h2>
         </div>
 
         <!-- Carousel Wrapper with External Navigation -->
-        <div class="relative max-w-6xl mx-auto px-24">
+        <div class="relative max-w-6xl mx-auto px-1 md:px-24 flex items-center gap-2 md:block">
+
+            <!-- Prev Button (Beside Card on Mobile) -->
+            <button id="prev-btn"
+                class="shrink-0 static md:absolute md:-left-12 md:top-1/2 md:-translate-y-1/2 bg-gray-900/30 hover:bg-gray-900/50 text-white p-2 md:p-4 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 z-20 backdrop-blur-sm border border-white/20">
+                <i class="ph-bold ph-caret-left text-xl md:text-2xl"></i>
+            </button>
 
             <!-- Actual Card -->
             <div
-                class="hover-glow relative group shadow-2xl rounded-2xl overflow-hidden h-auto md:h-80 mx-auto border border-transparent">
+                class="flex-1 min-w-0 hover-glow relative group shadow-2xl rounded-2xl overflow-hidden h-auto md:h-80 mx-auto border border-blue-100">
                 <div class="flex flex-col md:flex-row h-full">
-                    <!-- Left: Image Area (Dark Blue) -->
-                    <div class="bg-[#1E3A8A] md:w-1/2 relative min-h-[200px] md:min-h-full overflow-hidden">
+                    <!-- Left: Image Area -->
+                    <div class="bg-blue-50 md:w-1/2 relative min-h-[250px] md:min-h-full overflow-hidden">
                         <img id="review-img"
                             src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop"
-                            class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay transition-opacity duration-500">
-                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <span class="z-10 text-xl font-bold text-white tracking-wider">Client Story</span>
+                            class="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity duration-500">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center pointer-events-none bg-blue-900/10">
+                            <span class="z-10 text-xl font-bold text-white tracking-wider drop-shadow-md">Client
+                                Story</span>
                         </div>
                     </div>
 
-                    <!-- Right: Text Area (Cyan/Light Blue) -->
+                    <!-- Right: Text Area -->
                     <div
-                        class="bg-[#5EEAD4] md:w-1/2 p-8 md:p-12 flex flex-col justify-center items-center text-center relative">
+                        class="bg-white md:w-1/2 p-4 md:p-12 flex flex-col justify-center items-center text-center relative">
                         <h3 id="review-author"
-                            class="text-2xl font-bold text-gray-900 mb-2 transition-opacity duration-300">Alex Johnson
+                            class="text-xl md:text-2xl font-bold text-gray-900 mb-2 transition-opacity duration-300">
+                            Alex Johnson
                         </h3>
                         <p id="review-text"
-                            class="text-gray-800 text-lg italic leading-relaxed transition-opacity duration-300">
+                            class="text-gray-600 text-sm md:text-lg italic leading-relaxed transition-opacity duration-300 line-clamp-4 md:line-clamp-none">
                             "Excellent service! Highly recommended for their professionalism and attention to detail."
                         </p>
                         <span
-                            class="text-sm font-semibold text-blue-900 mt-4 uppercase tracking-widest opacity-70">Verified
+                            class="text-xs md:text-sm font-semibold text-blue-600 mt-4 uppercase tracking-widest opacity-90">Verified
                             Client</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Navigation Buttons (Outside) -->
-            <button id="prev-btn"
-                class="absolute left-0 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 shadow-lg text-gray-900 p-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 z-10">
-                <i class="ph-bold ph-caret-left text-2xl"></i>
-            </button>
+            <!-- Next Button (Beside Card on Mobile) -->
             <button id="next-btn"
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 shadow-lg text-gray-900 p-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 z-10">
-                <i class="ph-bold ph-caret-right text-2xl"></i>
+                class="shrink-0 static md:absolute md:-right-12 md:top-1/2 md:-translate-y-1/2 bg-gray-900/30 hover:bg-gray-900/50 text-white p-2 md:p-4 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 z-20 backdrop-blur-sm border border-white/20">
+                <i class="ph-bold ph-caret-right text-xl md:text-2xl"></i>
             </button>
-
         </div>
     </section>
 
+    <!-- Javascript -->
     <div id="footer-container"></div>
 
     <!-- Javascript -->
