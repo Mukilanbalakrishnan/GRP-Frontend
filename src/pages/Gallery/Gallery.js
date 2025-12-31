@@ -1,69 +1,18 @@
 // --- IMPORTS ---
-// Uncomment if paths are correct in your build environment
 // import { initNavbar } from "../../components/Navbar/Navbar";
 // import { initFooter } from "../../components/Footer/Footer";
 
-// --- DATA ---
 const galleryData = [
-    {
-        id: 1,
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
-        title: 'Mountain Landscape',
-        category: 'nature',
-        description: 'Beautiful mountain scenery'
-    },
-    {
-        id: 2,
-        image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800',
-        title: 'Modern Building',
-        category: 'architecture',
-        description: 'Contemporary architecture design'
-    },
-    {
-        id: 3,
-        image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800',
-        title: 'Portrait',
-        category: 'people',
-        description: 'Stunning portrait photography'
-    },
-    {
-        id: 4,
-        image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800',
-        title: 'Abstract Art',
-        category: 'art',
-        description: 'Modern abstract painting'
-    },
-    {
-        id: 5,
-        image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800',
-        title: 'Forest Path',
-        category: 'nature',
-        description: 'Peaceful forest trail'
-    },
-    {
-        id: 6,
-        image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800',
-        title: 'City Skyline',
-        category: 'architecture',
-        description: 'Urban cityscape at night'
-    },
-    {
-        id: 7,
-        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800',
-        title: 'Fashion Portrait',
-        category: 'people',
-        description: 'Fashion photography'
-    },
-    {
-        id: 8,
-        image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800',
-        title: 'Colorful Canvas',
-        category: 'art',
-        description: 'Vibrant artistic expression'
-    }
+    { id: 1, image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800', title: 'Mountain Landscape', category: 'nature', description: 'Beautiful mountain scenery' },
+    { id: 2, image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800', title: 'Modern Building', category: 'architecture', description: 'Contemporary architecture design' },
+    { id: 3, image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800', title: 'Portrait', category: 'people', description: 'Stunning portrait photography' },
+    { id: 4, image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800', title: 'Abstract Art', category: 'art', description: 'Modern abstract painting' },
+    { id: 5, image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800', title: 'Forest Path', category: 'nature', description: 'Peaceful forest trail' },
+    { id: 6, image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800', title: 'City Skyline', category: 'architecture', description: 'Urban cityscape at night' },
+    { id: 7, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800', title: 'Fashion Portrait', category: 'people', description: 'Fashion photography' },
+    { id: 8, image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800', title: 'Colorful Canvas', category: 'art', description: 'Vibrant artistic expression' }
 ];
 
-// --- CLASS DEFINITION ---
 class Gallery {
     constructor() {
         this.galleryGrid = document.getElementById('galleryGrid');
@@ -71,37 +20,24 @@ class Gallery {
         this.lightboxImage = document.getElementById('lightboxImage');
         this.lightboxCaption = document.getElementById('lightboxCaption');
         
-        // Data State
         this.originalData = galleryData;
         this.displayData = []; 
-        
-        // Carousel State
         this.currentIndex = 0;
         this.isDragging = false;
         this.startX = 0;
         this.isTransitioning = false;
 
-        // Initialize
         this.init();
-        
-        // Add resize listener to update layout on window resize
         window.addEventListener('resize', () => {
              requestAnimationFrame(() => this.updateCarousel(false));
         });
     }
 
     init() {
-        // Create 3 sets of data for infinite loop illusion
         this.displayData = [...this.originalData, ...this.originalData, ...this.originalData];
-        
-        // Start in the middle set
         this.currentIndex = this.originalData.length + Math.floor(this.originalData.length / 2);
-        
-        // Render and Start
         this.renderGallery(this.displayData);
         this.setupEventListeners();
-        
-        // Force an initial update to set positions
         requestAnimationFrame(() => this.updateCarousel(false));
     }
 
@@ -114,23 +50,17 @@ class Gallery {
             galleryItem.className = 'gallery-item';
             galleryItem.dataset.index = index;
 
-            // --- RESPONSIVE CENTERING ---
-            // We use JS to force center, but CSS media queries should ideally handle card size
             galleryItem.style.position = 'absolute';
             galleryItem.style.left = '50%';
             galleryItem.style.top = '50%';
             
-            // Default desktop size (300x400)
             let width = 300;
             let height = 400;
-            
-            // Mobile Adjustment
             if (window.innerWidth < 768) {
                 width = 220;
                 height = 320;
             }
             
-            // Set styles directly
             galleryItem.style.width = `${width}px`;
             galleryItem.style.height = `${height}px`;
             galleryItem.style.marginLeft = `-${width / 2}px`;
@@ -144,7 +74,6 @@ class Gallery {
                 </div>
             `;
 
-            // Click Handler
             galleryItem.addEventListener('click', () => {
                 const centerDist = Math.abs(index - this.currentIndex);
                 if (centerDist === 0) {
@@ -165,21 +94,17 @@ class Gallery {
 
         const prevBtnLightbox = document.getElementById('prevBtn');
         const nextBtnLightbox = document.getElementById('nextBtn');
-
         if (prevBtnLightbox) prevBtnLightbox.addEventListener('click', () => this.navigateLightbox(-1));
         if (nextBtnLightbox) nextBtnLightbox.addEventListener('click', () => this.navigateLightbox(1));
 
         const carouselPrev = document.getElementById('carouselPrev');
         const carouselNext = document.getElementById('carouselNext');
-
         if (carouselPrev) carouselPrev.addEventListener('click', () => this.rotateCarousel(-1));
         if (carouselNext) carouselNext.addEventListener('click', () => this.rotateCarousel(1));
 
         if (this.lightbox) {
             this.lightbox.addEventListener('click', (e) => {
-                if (e.target === this.lightbox) {
-                    this.closeLightbox();
-                }
+                if (e.target === this.lightbox) this.closeLightbox();
             });
         }
 
@@ -194,10 +119,8 @@ class Gallery {
             }
         });
         
-        // Add Touch/Swipe Support for Mobile
         let touchStartX = 0;
         let touchEndX = 0;
-        
         this.galleryGrid.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, {passive: true});
@@ -208,50 +131,41 @@ class Gallery {
         }, {passive: true});
         
         this.handleSwipe = () => {
-            if (touchStartX - touchEndX > 50) {
-                this.rotateCarousel(1); // Swipe Left -> Next
-            }
-            if (touchEndX - touchStartX > 50) {
-                this.rotateCarousel(-1); // Swipe Right -> Prev
-            }
+            if (touchStartX - touchEndX > 50) this.rotateCarousel(1); 
+            if (touchEndX - touchStartX > 50) this.rotateCarousel(-1); 
         };
     }
 
+    // UPDATED FUNCTION: Fixed Z-Index calculations to prevent overlay conflicts
     updateCarousel(enableTransition = true) {
         const items = document.querySelectorAll('.gallery-item');
         const isMobile = window.innerWidth < 768;
         
-        // --- RESPONSIVE CONFIG ---
-        const spacing = isMobile ? 120 : 200;  // Reduced spacing on mobile
-        const rotation = isMobile ? 25 : 45;   // Less rotation on mobile
-        const depthStep = isMobile ? 100 : 150; // Less depth push on mobile
-        // -------------------------
+        const spacing = isMobile ? 120 : 200;  
+        const rotation = isMobile ? 25 : 45;   
+        const depthStep = isMobile ? 100 : 150; 
 
         items.forEach((item, index) => {
             const offset = index - this.currentIndex;
             const absOffset = Math.abs(offset);
 
-            // Toggle transition
             item.style.transition = enableTransition ? 'all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)' : 'none';
 
             let transform = '';
             let zIndex = 0;
             let opacity = 1;
-            let pointerEvents = 'auto';
 
             if (offset === 0) {
                 // --- CENTER ITEM ---
                 transform = `translateX(0px) translateZ(${isMobile ? 200 : 350}px) rotateY(0deg) scale(1.1)`;
-                zIndex = 1000;
+                // FIXED: Changed from 1000 to 40 so it stays UNDER Navbar (z-50)
+                zIndex = 40; 
                 opacity = 1;
                 item.classList.add('active');
             } else {
                 // --- SIDE ITEMS ---
                 const sign = Math.sign(offset);
-                
                 opacity = Math.max(0.1, 1 - (absOffset * 0.3));
-                
-                // Hide items beyond 2 on mobile to prevent clutter
                 const hideThreshold = isMobile ? 2 : 3;
                 if (absOffset > hideThreshold) opacity = 0;
 
@@ -260,7 +174,9 @@ class Gallery {
                 const translateZ = -absOffset * depthStep;
 
                 transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
-                zIndex = 100 - absOffset;
+                
+                // FIXED: Lowered zIndex calculation to stay below 40
+                zIndex = 30 - absOffset; 
                 item.classList.remove('active');
             }
 
@@ -282,7 +198,6 @@ class Gallery {
 
         setTimeout(() => {
             this.isTransitioning = false;
-
             let needsReset = false;
             let resetIndex = this.currentIndex;
 
@@ -301,8 +216,6 @@ class Gallery {
         }, 500);
     }
 
-    // --- LIGHTBOX ---
-    
     openLightbox(displayIndex) {
         if (!this.lightbox) return;
         const realIndex = displayIndex % this.originalData.length;
@@ -347,15 +260,11 @@ class Gallery {
     }
 }
 
-// --- INIT ---
-
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof initNavbar === 'function') initNavbar();
     if (typeof initFooter === 'function') initFooter();
-
     new Gallery();
-    
-    console.log("Gallery Page Loaded - Responsive Mode Active");
+    console.log("Gallery Page Loaded - Z-Index Fixed");
 });
 
 if (typeof module !== 'undefined' && module.exports) {
