@@ -355,33 +355,9 @@ function initMobileSlider() {
     });
   }
   
-  // Auto-rotate every 5 seconds (optional)
-  let autoSlideInterval = setInterval(() => {
-    if (currentSlide < mobileCards.length - 1) {
-      currentSlide++;
-    } else {
-      currentSlide = 0;
-    }
-    updateMobileSlider();
-  }, 5000);
+ 
   
-  // Pause auto-slide on hover
-  mobileCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      clearInterval(autoSlideInterval);
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      autoSlideInterval = setInterval(() => {
-        if (currentSlide < mobileCards.length - 1) {
-          currentSlide++;
-        } else {
-          currentSlide = 0;
-        }
-        updateMobileSlider();
-      }, 5000);
-    });
-  });
+
   
   updateMobileSlider();
 }

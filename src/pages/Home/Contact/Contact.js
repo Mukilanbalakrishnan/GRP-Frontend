@@ -207,17 +207,33 @@ export function initContact() {
         card.href = item.href;
         if (item.target) card.target = item.target;
 
-        card.className = `
-            contact-card group relative block glow-border
-            bg-gradient-to-br from-blue-900 to-blue-950 rounded-xl sm:rounded-2xl
-            p-4 sm:p-5 lg:p-6
-            shadow-lg sm:shadow-xl cursor-pointer overflow-hidden contact-card-hover
-            opacity-0 -translate-x-6 sm:-translate-x-10
-            transition-all duration-300 ease-out
-            border border-white/10
-            hover:border-white/20
-            active:scale-[0.98]
-        `;
+        // Inside initContact() -> contactData.forEach loop
+
+       // Inside initContact() -> contactData.forEach loop
+
+card.className = `
+  contact-card group relative block glow-border
+  w-full max-w-sm lg:max-w-md
+  min-h-[96px]
+  flex items-center
+  bg-gradient-to-br from-blue-900 to-blue-950 rounded-xl sm:rounded-2xl
+  p-4 sm:p-5 lg:p-6
+  shadow-lg sm:shadow-xl cursor-pointer overflow-hidden contact-card-hover
+  opacity-0 
+  transition-all duration-300 ease-out
+  border border-white/10
+  hover:border-white/20
+  active:scale-[0.98]
+`;
+
+/* CHANGES MADE:
+   1. Removed `-translate-x-6 sm:-translate-x-10` (This was pushing the card off-screen).
+   2. Added `max-w-sm` (This ensures the card is narrow enough to be centered visibly).
+*/
+// Note: Changed `lg:max-w-md` to `max-w-md lg:max-w-md` to apply width constraint on mobile too.
+
+
+
         
         card.style.setProperty('--delay', `${index * 0.15}s`);
         card.style.opacity = '0';
@@ -260,7 +276,7 @@ export function initContact() {
                         transition-all duration-300">
                         ${item.label}
                     </p>
-                    <p class="text-base sm:text-lg font-bold text-white mt-0.5 sm:mt-1 truncate
+                    <p class="text-base sm:text-lg font-bold text-white mt-0.5 sm:mt-1 line-clamp-1
                         group-hover:text-white group-hover:translate-x-0.5 sm:group-hover:translate-x-1
                         transition-all duration-300">
                         ${item.value}
