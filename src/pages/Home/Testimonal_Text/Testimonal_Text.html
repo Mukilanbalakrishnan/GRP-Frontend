@@ -1,317 +1,43 @@
-<section class="w-full py-24 bg-gradient-to-b from-white to-gray-50/50" id="testimonials-text-section">
+<section class="w-full py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden" id="testimonials-text-section">
     
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-50"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
         
-        <div class="text-header-animate text-center mb-14 opacity-0 translate-y-6">
-
-    <!-- Small top label -->
-    <p class="text-blue-600 text-xs md:text-sm font-semibold tracking-[0.3em] uppercase mb-3">
-        Video Testimonials
-    </p>
-
-    <!-- Main heading -->
-    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight">
-        See What Our Clients Say
-    </h2>
-
-    <!-- Underline accent -->
-    <div class="mt-4 flex justify-center">
-        <span class="w-16 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full"></span>
-    </div>
-
-</div>
-
-
-        <div id="testimonial-desktop-grid" class="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            <!-- Desktop cards will be injected here -->
+        <div class="text-header-animate text-center mb-16 opacity-0 translate-y-8">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-4">
+                Client Feedback
+            </span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
+                Trusted by <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600">Industry Leaders</span>
+            </h2>
+            <div class="w-20 h-1.5 bg-blue-600 mx-auto rounded-full shadow-lg shadow-blue-200"></div>
         </div>
 
-        <div id="testimonial-mobile-slider" class="md:hidden w-full max-w-md mx-auto">
-            <div id="testimonial-mobile-container" class="relative w-full min-h-[400px]">
-                <!-- Mobile cards will be injected here -->
+        <div id="testimonial-desktop-grid" class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[420px]">
+            </div>
+
+        <div class="md:hidden w-full relative">
+            <div id="testimonial-text-track" class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 scrollbar-hide">
+                </div>
+        </div>
+
+        <div class="mt-12 flex items-center justify-center gap-8 opacity-0 translate-y-4 text-controls-animate">
+            <button id="text-prev-btn" class="w-14 h-14 rounded-full bg-white border border-gray-200 text-slate-600 flex items-center justify-center hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-x-1 active:scale-95 group">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            
+            <div class="flex flex-col items-center min-w-[60px]">
+                <span id="text-current-slide" class="text-3xl font-bold text-blue-900 leading-none">01</span>
+                <span id="text-slide-label" class="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">Page</span>
             </div>
             
-            <div class="mt-8 flex items-center justify-center gap-6">
-                <button id="testimonial-text-prev" class="w-12 h-12 rounded-full bg-gradient-to-r from-[#1e0094] to-blue-900 text-white flex items-center justify-center hover:from-blue-800 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 group">
-                    <svg class="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                </button>
-                
-                <div id="testimonial-text-slide-counter" class="text-[#1e0094] font-bold text-xl">
-                    <span id="testimonial-text-current-slide">1</span> / <span id="testimonial-text-total-slides">8</span>
-                </div>
-                
-                <button id="testimonial-text-next" class="w-12 h-12 rounded-full bg-gradient-to-r from-[#1e0094] to-blue-900 text-white flex items-center justify-center hover:from-blue-800 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 group">
-                    <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                </button>
-            </div>
+            <button id="text-next-btn" class="w-14 h-14 rounded-full bg-[#1e0094] text-white flex items-center justify-center hover:bg-blue-800 transition-all duration-300 shadow-xl hover:shadow-blue-900/30 hover:shadow-2xl hover:translate-x-1 active:scale-95 group">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
         </div>
 
     </div>
-
 </section>
-
-<style>
-    /* Custom Animations */
-    @keyframes spin-slow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    @keyframes spin-reverse {
-        from { transform: rotate(360deg); }
-        to { transform: rotate(0deg); }
-    }
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-    }
-    
-    @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 20px rgba(30, 0, 148, 0.3); }
-        50% { box-shadow: 0 0 30px rgba(30, 0, 148, 0.5); }
-    }
-    
-    @keyframes shimmer {
-        0% { background-position: -200% center; }
-        100% { background-position: 200% center; }
-    }
-    
-    @keyframes fade-in-up {
-        from { 
-            opacity: 0; 
-            transform: translateY(30px) scale(0.95); 
-        }
-        to { 
-            opacity: 1; 
-            transform: translateY(0) scale(1); 
-        }
-    }
-    
-    @keyframes slide-in-left {
-        from { 
-            opacity: 0; 
-            transform: translateX(-40px) scale(0.95); 
-        }
-        to { 
-            opacity: 1; 
-            transform: translateX(0) scale(1); 
-        }
-    }
-    
-    @keyframes slide-in-right {
-        from { 
-            opacity: 0; 
-            transform: translateX(40px) scale(0.95); 
-        }
-        to { 
-            opacity: 1; 
-            transform: translateX(0) scale(1); 
-        }
-    }
-    
-    .animate-spin-slow {
-        animation: spin-slow 20s linear infinite;
-    }
-    
-    .animate-spin-reverse {
-        animation: spin-reverse 25s linear infinite;
-    }
-    
-    /* Enhanced Desktop Card Styles */
-    .testimonial-text-card {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    opacity: 1;                  /* ✅ visible */
-    transform: translateY(0) scale(1);
-}
-
-    
-    .testimonial-text-card.animated {
-        animation-play-state: running;
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    
-    .testimonial-text-card:hover {
-        transform: translateY(-15px) scale(1.05) rotateX(3deg);
-        box-shadow: 0 30px 60px -12px rgba(30, 0, 148, 0.4);
-        z-index: 20;
-        animation: pulse-glow 2s ease-in-out infinite, float 6s ease-in-out infinite;
-    }
-    
-    .testimonial-text-card::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(
-            45deg, 
-            rgba(255, 255, 255, 0.2), 
-            rgba(30, 0, 148, 0.6), 
-            rgba(255, 255, 255, 0.2)
-        );
-        border-radius: 24px;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        background-size: 200% 200%;
-        animation: shimmer 3s linear infinite paused;
-    }
-    
-    .testimonial-text-card:hover::before {
-        opacity: 1;
-        animation-play-state: running;
-    }
-    
-    .testimonial-text-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(145deg, 
-            rgba(30, 0, 148, 0.9) 0%, 
-            rgba(30, 58, 138, 0.85) 50%, 
-            rgba(30, 0, 148, 0.9) 100%
-        );
-        border-radius: 22px;
-        z-index: -2;
-    }
-    
-    .quote-icon {
-        transition: all 0.5s ease;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-    }
-    
-    .testimonial-text-card:hover .quote-icon {
-        transform: rotate(8deg) scale(1.2);
-        filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
-    }
-    
-    .rating-star {
-        transition: all 0.3s ease;
-        animation: float 3s ease-in-out infinite;
-    }
-    
-    .rating-star:nth-child(2) { animation-delay: 0.1s; }
-    .rating-star:nth-child(3) { animation-delay: 0.2s; }
-    .rating-star:nth-child(4) { animation-delay: 0.3s; }
-    .rating-star:nth-child(5) { animation-delay: 0.4s; }
-    
-    .testimonial-text-card:hover .rating-star {
-        transform: scale(1.2);
-    }
-    
-    /* Mobile Card Styles */
-    .mobile-testimonial-text-card {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transform: scale(0.9);
-        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        z-index: 1;
-    }
-    
-    .mobile-testimonial-text-card.active {
-        display: flex;
-        opacity: 1;
-        transform: scale(1);
-        z-index: 10;
-        position: relative;
-        animation: pulse-glow 3s ease-in-out infinite;
-    }
-    
-    .mobile-testimonial-text-card.slide-left {
-        animation: slide-in-left 0.6s ease-out forwards;
-    }
-    
-    .mobile-testimonial-text-card.slide-right {
-        animation: slide-in-right 0.6s ease-out forwards;
-    }
-    
-    /* Enhanced Review Text */
-    .review-text {
-        position: relative;
-        transition: all 0.3s ease;
-    }
-    
-    .testimonial-text-card:hover .review-text {
-        transform: translateY(-2px);
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Client Info Styling */
-    .client-info {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .testimonial-text-card:hover .client-info::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent
-        );
-        transition: left 0.5s ease;
-        animation: shimmer 2s linear infinite;
-    }
-    
-    /* Floating Animation for All Cards */
-    .testimonial-text-card {
-        animation: float 6s ease-in-out infinite paused;
-    }
-    
-    .testimonial-text-card:hover,
-    .mobile-testimonial-text-card.active {
-        animation-play-state: running;
-    }
-    
-    /* Enhanced Buttons */
-    #testimonial-text-prev,
-    #testimonial-text-next {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    #testimonial-text-prev::before,
-    #testimonial-text-next::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(45deg, #1e0094, #3b82f6, #1e0094);
-        border-radius: 50%;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    #testimonial-text-prev:hover::before,
-    #testimonial-text-next:hover::before {
-        opacity: 1;
-    }
-    
-    /* Responsive Adjustments */
-    @media (max-width: 640px) {
-        .testimonial-text-card {
-            min-height: 380px;
-        }
-        
-        .mobile-testimonial-text-card.active {
-            box-shadow: 0 20px 40px rgba(30, 0, 148, 0.25);
-        }
-    }
-</style>

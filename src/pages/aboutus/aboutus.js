@@ -3,8 +3,10 @@
 import {initNavbar} from "../../components/Navbar/Navbar";
 import {initFooter} from "../../components/Footer/Footer";
 
+// aboutus.js (Vanilla JS Version - No External Dependencies)
+
 document.addEventListener('DOMContentLoaded', () => {
-  
+
 
     // -------------------------------------------------------------
     // Review Carousel Logic
@@ -117,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Navigation buttons not found!");
     }
 });
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
