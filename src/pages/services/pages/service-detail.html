@@ -30,6 +30,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    #video-grid::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    #video-grid {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    @media (min-width: 768px) {
+  #video-track {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    transform: none !important;
+  }
+}
+
+</style>
 
 <body class="bg-gray-50 font-sans antialiased">
     <!-- Navbar -->
@@ -94,9 +115,17 @@
                 </div>
 
                 <!-- Video Grid -->
-                <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    <!-- Dynamic videos will be injected here -->
-                </div>
+                <div class="relative overflow-hidden">
+  <div class="relative overflow-hidden">
+  <div
+    id="video-track"
+    class="flex transition-transform duration-700 ease-in-out"
+  ></div>
+</div>
+
+</div>
+
+
             </div>
         </section>
 
@@ -222,11 +251,7 @@
                     aboutTitle: "About Water Line Repair",
                     aboutDescription: "Low water pressure or wet spots in your yard can indicate a main water line leak. We repair and replace damaged water lines to restore reliable, clean water supply to your home, ensuring the safety of your family.",
                     aboutImage: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Main Line Leak Detection",
-                        "Copper & PEX Piping",
-                        "Pressure Regulator Replacement"
-                    ],
+                    bulletPoints: ["Main Line Leak Detection", "Copper & PEX Piping", "Pressure Regulator Replacement"],
                     videos: [
                         { thumbnail: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
                         { thumbnail: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
@@ -241,11 +266,7 @@
                     aboutTitle: "About Gas Line Services",
                     aboutDescription: "Natural gas is efficient but dangerous if handled incorrectly. Our certified technicians safely install new gas lines for appliances and provide emergency leak detection and repair services for your peace of mind.",
                     aboutImage: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "New Gas Line for Stoves/Dryers",
-                        "BBQ Grill Gas Hookup",
-                        "Emergency Shut-off Services"
-                    ],
+                    bulletPoints: ["New Gas Line for Stoves/Dryers", "BBQ Grill Gas Hookup", "Emergency Shut-off Services"],
                     videos: [
                         { thumbnail: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
                         { thumbnail: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
@@ -260,11 +281,7 @@
                     aboutTitle: "About Drain Cleaning",
                     aboutDescription: "Stubborn clogs can cause backups and unpleasant odors. Using hydro-jetting and snake technology, we clear blockages deep within your plumbing system to ensure everything flows smoothly again.",
                     aboutImage: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Hydro-jetting Technology",
-                        "Video Inspection",
-                        "Root Removal"
-                    ],
+                    bulletPoints: ["Hydro-jetting Technology", "Video Inspection", "Root Removal"],
                     videos: [
                         { thumbnail: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
                         { thumbnail: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" },
@@ -279,11 +296,7 @@
                     aboutTitle: "About Faucet Repairs",
                     aboutDescription: "A dripping faucet or hidden pipe leak can waste gallons of water and cause significant structural damage over time. Our experienced team uses advanced technology to locate and fix leaks quickly, ensuring your home remains dry and efficient.",
                     aboutImage: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Faucet repair and replacement",
-                        "Advanced Leak Detection",
-                        "Emergency Pipe Fixing"
-                    ],
+                    bulletPoints: ["Faucet repair and replacement", "Advanced Leak Detection", "Emergency Pipe Fixing"],
                     videos: [
                         { thumbnail: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" },
                         { thumbnail: "https://images.unsplash.com/photo-1542596594-649edbc13630?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
@@ -298,11 +311,7 @@
                     aboutTitle: "About Remodeling",
                     aboutDescription: "Ready for an upgrade? We specialize in installing modern plumbing fixtures, rerouting pipes, and ensuring your new kitchen or bathroom is both beautiful and functional. From luxury showers to gourmet kitchen sinks, we handle it all.",
                     aboutImage: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Modern Fixture Installation",
-                        "Pipe Rerouting for New Layouts",
-                        "Appliance Hookups"
-                    ],
+                    bulletPoints: ["Modern Fixture Installation", "Pipe Rerouting for New Layouts", "Appliance Hookups"],
                     videos: [
                         { thumbnail: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
                         { thumbnail: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
@@ -317,16 +326,13 @@
                     aboutTitle: "About Sewer Repair",
                     aboutDescription: "Sewer line issues can be messy and disruptive. We use trenchless repair methods whenever possible to fix cracks, bellies, and collapses without destroying your yard or driveway.",
                     aboutImage: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Camera Inspection & Diagnosis",
-                        "Trenchless Pipe Lining",
-                        "Minimal Excavation"
-                    ],
+                    bulletPoints: ["Camera Inspection & Diagnosis", "Trenchless Pipe Lining", "Minimal Excavation"],
                     videos: [
                         { thumbnail: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
                         { thumbnail: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" },
                         { thumbnail: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" }
+                        { thumbnail: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
+                        { thumbnail: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
                     ]
                 }
             };
@@ -335,7 +341,7 @@
             const serviceId = params.get('service');
             const data = servicesData[serviceId];
 
-            // Modal Elements
+            // Modal Logic
             const modal = document.getElementById('video-modal');
             const modalBackdrop = document.getElementById('modal-backdrop');
             const modalContent = document.getElementById('modal-content');
@@ -346,46 +352,73 @@
                 modalVideo.src = videoSrc;
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-
-                // Trigger animations
                 setTimeout(() => {
                     modalBackdrop.classList.remove('opacity-0');
                     modalContent.classList.remove('opacity-0', 'scale-95');
                 }, 10);
-
                 modalVideo.play().catch(e => console.log('Auto-play prevented:', e));
             }
 
             function closeModal() {
                 modalBackdrop.classList.add('opacity-0');
                 modalContent.classList.add('opacity-0', 'scale-95');
-
                 setTimeout(() => {
                     modal.classList.add('hidden');
                     modal.classList.remove('flex');
                     modalVideo.pause();
-                    modalVideo.src = ''; // Stop buffering
+                    modalVideo.src = ''; 
                 }, 300);
             }
 
-            // Close triggers
             if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
             if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
             });
 
+            // SLIDER LOGIC VARIABLES
+            let autoSlideInterval = null;
+            let currentSlideIndex = 0;
+            const videoTrack = document.getElementById('video-track');
+
+            function startMobileSlider() {
+                // If it's desktop, stop everything and reset
+                if (window.innerWidth >= 768) {
+                    stopMobileSlider();
+                    if(videoTrack) videoTrack.style.transform = 'none'; // Reset transform
+                    return;
+                }
+
+                // If timer already running, don't restart
+                if (autoSlideInterval) return;
+
+                const slideCount = videoTrack ? videoTrack.children.length : 0;
+                
+                autoSlideInterval = setInterval(() => {
+                    currentSlideIndex++;
+                    if (currentSlideIndex >= slideCount) {
+                        currentSlideIndex = 0;
+                    }
+                    videoTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                }, 3000); // 3 seconds per slide
+            }
+
+            function stopMobileSlider() {
+                if (autoSlideInterval) {
+                    clearInterval(autoSlideInterval);
+                    autoSlideInterval = null;
+                }
+            }
+
+            // Populate Data
             if (data) {
                 document.title = data.title + " - Brand.";
                 document.getElementById('hero-title').textContent = data.title;
                 document.getElementById('hero-subtitle').textContent = data.subtitle;
                 document.getElementById('hero-image').src = data.heroImage;
-
                 document.getElementById('about-title').textContent = data.aboutTitle;
                 document.getElementById('about-description').textContent = data.aboutDescription;
                 document.getElementById('about-image').src = data.aboutImage;
-
-                // Also update booking image to match about image
                 document.getElementById('booking-image').src = data.aboutImage;
 
                 const bulletList = document.getElementById('bullet-points');
@@ -398,41 +431,47 @@
                 });
 
                 // Populate Video Grid
-                const videoGrid = document.getElementById('video-grid');
-                if (videoGrid && data.videos) {
-                    videoGrid.innerHTML = ''; // Clear existing
+                if (videoTrack && data.videos) {
+                    videoTrack.innerHTML = '';
                     data.videos.forEach(video => {
                         const videoCard = document.createElement('div');
-                        videoCard.className = 'aspect-[9/16] bg-blue-100 rounded-xl overflow-hidden shadow-md relative group cursor-pointer border border-blue-200 transition-transform hover:-translate-y-1';
+                        // KEY FIX: min-w-full for mobile (to work with sliding), md:min-w-0 for desktop grid
+                        videoCard.className = `
+                            min-w-full md:min-w-0 
+                            w-full md:w-auto 
+                            aspect-video 
+                            bg-blue-100 rounded-xl overflow-hidden 
+                            shadow-md relative group cursor-pointer 
+                            border border-blue-200 
+                            shrink-0
+                        `;
                         videoCard.innerHTML = `
                             <img src="${video.thumbnail}" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <i class="ph-fill ph-play-circle text-5xl text-blue-600 opacity-90 group-hover:scale-110 transition-transform shadow-lg rounded-full bg-white/20 backdrop-blur-sm p-2"></i>
                             </div>
                         `;
-
-                        // Click handler to open modal
-                        videoCard.addEventListener('click', () => {
-                            openModal(video.src);
-                        });
-
-                        videoGrid.appendChild(videoCard);
+                        videoCard.addEventListener('click', () => openModal(video.src));
+                        videoTrack.appendChild(videoCard);
                     });
+
+                    // Start Slider Logic
+                    startMobileSlider();
+                    
+                    // Add Resize Listener
+                    window.addEventListener('resize', startMobileSlider);
                 }
 
-                // Set selected option in booking form
-                const serviceSelect = document.getElementById('service-select');
-                serviceSelect.value = serviceId;
-
-                // Show content
+                document.getElementById('service-select').value = serviceId;
                 document.getElementById('main-content').classList.remove('opacity-0');
             } else {
-                // Handle invalid service ID
                 document.getElementById('main-content').innerHTML = '<div class="text-center py-20"><h2 class="text-2xl font-bold">Service Not Found</h2><a href="../services.html" class="text-blue-600 hover:underline">Return to Services</a></div>';
                 document.getElementById('main-content').classList.remove('opacity-0');
             }
         });
     </script>
+    
+
 </body>
 
 </html>
