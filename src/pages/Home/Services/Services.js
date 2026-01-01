@@ -40,6 +40,9 @@ const servicesData = [
   },
 ];
 
+let mobileSlideInterval = null;
+
+
 // 2. INITIALIZATION FUNCTION
 export function initServices() {
   const desktopGrid = document.getElementById("desktop-grid");
@@ -284,56 +287,75 @@ function createCard(item, container, isMobile, index) {
   container.appendChild(card);
 }
 
+const mobileSlider = document.getElementById('mobile-slider-container');
+
+if (mobileSlider) {
+  mobileSlider.addEventListener('touchstart', () => {
+    if (mobileSlideInterval) {
+      clearInterval(mobileSlideInterval);
+      mobileSlideInterval = null;
+    }
+  });
+
+  mobileSlider.addEventListener('touchend', () => {
+    setTimeout(() => {
+      if (!mobileSlideInterval) initMobileSlider();
+    }, 2000);
+  });
+}
+
+
 // MOBILE SLIDER SETUP (With Auto-Slide)
 function initMobileSlider() {
   const mobileCards = document.querySelectorAll('.mobile-card');
   const prevBtn = document.getElementById('mobile-prev');
   const nextBtn = document.getElementById('mobile-next');
   const currentSlideEl = document.getElementById('current-slide');
-  
-  let currentSlide = 0;
-  let slideInterval; // Variable to store the timer
-  
+
   if (!mobileCards.length) return;
-  
+
+  let currentSlide = 0;
+
+  // 🔴 IMPORTANT: clear existing interval FIRST
+  if (mobileSlideInterval) {
+    clearInterval(mobileSlideInterval);
+    mobileSlideInterval = null;
+  }
+
   function updateMobileSlider() {
     mobileCards.forEach(card => card.classList.remove('active'));
     mobileCards[currentSlide].classList.add('active');
     currentSlideEl.textContent = currentSlide + 1;
   }
-  
-  // Function to start the auto-slider
+
   function startAutoSlide() {
-    // Clear any existing interval to prevent duplicates
-    clearInterval(slideInterval);
-    // Set new interval (3000ms = 3 seconds)
-    slideInterval = setInterval(() => {
-      currentSlide = (currentSlide < mobileCards.length - 1) ? currentSlide + 1 : 0;
+    // Safety clear (double protection)
+    if (mobileSlideInterval) clearInterval(mobileSlideInterval);
+
+    mobileSlideInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % mobileCards.length;
       updateMobileSlider();
-    }, 3000);
+    }, 4000); // ⬅️ slower & smoother (4s)
   }
 
-  // Manual Navigation Handling
-  if (prevBtn) {
-    prevBtn.onclick = () => {
-      currentSlide = (currentSlide > 0) ? currentSlide - 1 : mobileCards.length - 1;
-      updateMobileSlider();
-      startAutoSlide(); // Reset timer on click
-    };
-  }
-  
-  if (nextBtn) {
-    nextBtn.onclick = () => {
-      currentSlide = (currentSlide < mobileCards.length - 1) ? currentSlide + 1 : 0;
-      updateMobileSlider();
-      startAutoSlide(); // Reset timer on click
-    };
-  }
-  
-  // Initial Start
+  // Manual controls
+  prevBtn?.addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + mobileCards.length) % mobileCards.length;
+    updateMobileSlider();
+    startAutoSlide();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % mobileCards.length;
+    updateMobileSlider();
+    startAutoSlide();
+  });
+
+  // Initial state
   updateMobileSlider();
   startAutoSlide();
 }
+
 
 // DESKTOP GRID SETUP
 function initDesktopGrid() {
