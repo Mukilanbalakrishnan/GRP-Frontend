@@ -1,12 +1,46 @@
 // aboutus.js (Vanilla JS Version - No External Dependencies)
 
-import {initNavbar} from "../../components/Navbar/Navbar";
-import {initFooter} from "../../components/Footer/Footer";
-
-// aboutus.js (Vanilla JS Version - No External Dependencies)
-
 document.addEventListener('DOMContentLoaded', () => {
+    // -------------------------------------------------------------
+    // Navbar Logic
+    // -------------------------------------------------------------
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    let isOpen = false;
 
+    if (menuBtn && mobileMenu && menuIcon) {
+        menuBtn.addEventListener('click', () => {
+            isOpen = !isOpen;
+
+            if (isOpen) {
+                // Open Menu
+                menuIcon.classList.replace('ph-list', 'ph-x');
+                mobileMenu.classList.remove('hidden');
+                // Simple entry animation
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateY(-10px)';
+                mobileMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+                requestAnimationFrame(() => {
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.transform = 'translateY(0)';
+                });
+
+            } else {
+                // Close Menu
+                menuIcon.classList.replace('ph-x', 'ph-list');
+
+                // Simple exit animation
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateY(-10px)';
+
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300); // Wait for transition
+            }
+        });
+    }
 
     // -------------------------------------------------------------
     // Review Carousel Logic
@@ -103,26 +137,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300); // 300ms matches standard transition
     }
 
+    // -------------------------------------------------------------
+    // Auto-Scroll Logic
+    // -------------------------------------------------------------
+    let autoScrollInterval;
+    const AUTO_SCROLL_DELAY = 5000; // 5 seconds
+    const carouselContainer = document.getElementById('reviews-carousel');
+
+    function startAutoScroll() {
+        stopAutoScroll(); // Clear any existing
+
+        autoScrollInterval = setInterval(() => {
+            currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+            updateReview(currentReviewIndex);
+        }, AUTO_SCROLL_DELAY);
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+        }
+    }
+
     if (prevBtn && nextBtn) {
         prevBtn.addEventListener('click', () => {
             console.log("Prev Clicked");
             currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
             updateReview(currentReviewIndex);
+            startAutoScroll(); // Reset timer
         });
 
         nextBtn.addEventListener('click', () => {
             console.log("Next Clicked");
             currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
             updateReview(currentReviewIndex);
+            startAutoScroll(); // Reset timer
         });
     } else {
         console.error("Navigation buttons not found!");
     }
-});
 
+    // Independent Hover Logic
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', () => {
+            stopAutoScroll();
+        });
+        carouselContainer.addEventListener('mouseleave', () => {
+            startAutoScroll();
+        });
+    }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    initNavbar();
-    initFooter();
+    // Start initial timer
+    startAutoScroll();
 });
