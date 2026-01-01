@@ -1,7 +1,3 @@
-import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
-
-import { initNavbar } from "../../components/Navbar/Navbar";
-import { initFooter } from "../../components/Footer/Footer";
 
 // Form Logic (Basic interaction)
 const form = document.getElementById('contactForm');
@@ -23,13 +19,3 @@ if (form) {
         }, 1500);
     });
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Load the components
-    initNavbar();
-    initFooter();
-
-    // Any other Gallery specific logic goes here
-    console.log("Gallery Page Loaded");
-});

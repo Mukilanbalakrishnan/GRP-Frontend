@@ -12,6 +12,9 @@ import { initBrand } from './src/pages/Home/Brand/Brand.js';
 import { initTestimonialsText } from './src/pages/Home/Testimonal_Text/Testimonal_Text.js';
 import { initContact } from './src/pages/Home/Contact/Contact.js';
 import { initFooter } from '/src/components/Footer/Footer.js';
+import { initBackToTop } from './src/components/BackToTop/BackToTop.js';
+import { initEnquiryFormGlobal } from './src/components/EnquiryForm/EnquiryForm.js';
+import { initGlobalLoader } from './src/components/GlobalLoader/GlobalLoader.js';
 // import {}
 
 
@@ -47,7 +50,11 @@ async function loadComponent(containerId, htmlPath, initFunction) {
 }
 
 // 3. START APP
-async function startApp() {
+async function startApp() {     
+
+    initBackToTop();
+    initGlobalLoader();
+    initEnquiryFormGlobal();
     // Load Navbar
     await loadComponent('navbar-container', '/src/components/Navbar/Navbar.html', initNavbar);
 

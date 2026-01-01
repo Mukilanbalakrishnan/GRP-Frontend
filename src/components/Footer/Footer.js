@@ -1,6 +1,11 @@
 import { animate, stagger, inView } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
 
 export function initFooter() {
+
+    const yearSpan = document.getElementById('copyright-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
     
     // Select all elements to animate
     const footerItems = document.querySelectorAll(".footer-animate");

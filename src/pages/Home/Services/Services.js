@@ -56,12 +56,11 @@ export function initServices() {
   mobileSliderContainer.innerHTML = "";
 
   // Add CSS for animations
+  // We added specific rules for .mobile-card.active to replicate the hover effects
   const style = document.createElement('style');
   style.textContent = `
     /* Mobile card styles */
-    .mobile-card {
-      display: none;
-    }
+    .mobile-card { display: none; }
     
     .mobile-card.active {
       display: block;
@@ -73,55 +72,92 @@ export function initServices() {
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Card hover effects for both desktop and mobile */
+    /* Card Hover / Active State Logic */
     .service-card {
       transform-style: preserve-3d;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     
+    /* Desktop Hover */
     .service-card:hover { transform: translateY(-8px) scale(1.02); }
     
-    .icon-container { position: relative; overflow: hidden; }
+    /* --- MOBILE ACTIVE STATE ANIMATION MAPPING --- */
     
+    /* 1. Background Zoom */
+    .mobile-card.active .js-bg-anim {
+        transform: scale(1.1);
+    }
+    
+    /* 2. Shimmer Effect (Auto swipe when active) */
+    .mobile-card.active .js-shimmer-anim {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+    
+    /* 3. Gradient Icon Overlay */
+    .mobile-card.active .js-gradient-overlay {
+        opacity: 1; 
+    }
+    
+    /* 4. Icon Scaling */
+    .mobile-card.active .icon-container {
+        transform: scale(1.1);
+        box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3); /* Red shadow simulation */
+    }
+    
+    /* 5. Icon Rotate */
+    .mobile-card.active .icon-svg {
+        transform: scale(1.1) rotate(12deg);
+    }
+    
+    /* 6. Text Shine (Move gradient across) */
+    .mobile-card.active .text-shine::after {
+        left: 100%;
+    }
+    
+    /* 7. Description Slide Up */
+    .mobile-card.active .js-desc-anim {
+        transform: translateY(-5px);
+        color: #dbeafe; /* text-blue-100 */
+    }
+    
+    /* 8. Top Line Expand */
+    .mobile-card.active .js-line-anim {
+        transform: scaleX(1);
+    }
+    
+    /* 9. Sparkles (Re-use existing animation) */
+    .service-card:hover .sparkle,
+    .mobile-card.active .sparkle {
+      animation: sparkle-fly 1s ease-out forwards;
+    }
+    
+    /* --- SHARED STYLES --- */
+    .icon-container { position: relative; overflow: hidden; transition: all 0.5s; }
     .icon-container::before {
       content: '';
-      position: absolute;
-      top: 50%; left: 50%;
+      position: absolute; top: 50%; left: 50%;
       width: 0; height: 0;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
       transform: translate(-50%, -50%);
       transition: width 0.6s, height 0.6s;
     }
-    
-    .service-card:hover .icon-container::before { width: 120px; height: 120px; }
+    .service-card:hover .icon-container::before,
+    .mobile-card.active .icon-container::before { width: 120px; height: 120px; }
     
     .text-shine { color: white; position: relative; display: inline-block; }
-    
     .text-shine::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
       transition: left 0.8s ease;
     }
     
-    .service-card:hover .text-shine::after { left: 100%; }
-    
     .sparkle {
-      position: absolute;
-      width: 6px; height: 6px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0;
+      position: absolute; width: 6px; height: 6px;
+      background: white; border-radius: 50%; opacity: 0;
       box-shadow: 0 0 10px 2px white;
     }
-    
-    .service-card:hover .sparkle {
-      animation: sparkle-fly 1s ease-out forwards;
-    }
-    
     @keyframes sparkle-fly {
       0% { opacity: 0; transform: translate(0, 0) scale(0); }
       20% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1); }
@@ -139,7 +175,7 @@ export function initServices() {
     createCard(item, mobileSliderContainer, true, index);
   });
 
-  // --- HEADER ANIMATION (MOVED HERE TO RUN ON ALL DEVICES) ---
+  // --- HEADER ANIMATION ---
   inView("#services-section", () => {
     animate(
       ".service-header-animate",
@@ -152,7 +188,7 @@ export function initServices() {
     );
   });
 
-  // Initialize mobile slider if on mobile
+  // Initialize view logic
   if (window.innerWidth < 768) {
     initMobileSlider();
   } else {
@@ -177,14 +213,17 @@ export function initServices() {
 function createCard(item, container, isMobile, index) {
   const card = document.createElement("div");
   
+  // Note: We added js- marker classes to specific elements to target them for mobile "auto-hover"
   card.className = isMobile 
     ? `mobile-card service-card group relative bg-blue-950 rounded-3xl p-8 overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:z-10 ${index === 0 ? 'active' : ''}`
     : `service-card group relative bg-blue-950 rounded-3xl p-8 overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:z-10`;
 
   card.innerHTML = `
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-950 transition-all duration-700 group-hover:scale-110"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-1000"></div>
-    <div class="absolute top-0 left-0 w-full h-1 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left shadow-lg shadow-red-600/50"></div>
+    <div class="js-bg-anim absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-950 transition-all duration-700 group-hover:scale-110"></div>
+    
+    <div class="js-shimmer-anim absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-1000"></div>
+    
+    <div class="js-line-anim absolute top-0 left-0 w-full h-1 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left shadow-lg shadow-red-600/50"></div>
     
     <div class="sparkle" style="--tx: -20px; --ty: -15px; top: 30%; left: 30%; animation-delay: 0.1s"></div>
     <div class="sparkle" style="--tx: 25px; --ty: -10px; top: 20%; left: 70%; animation-delay: 0.3s"></div>
@@ -192,8 +231,10 @@ function createCard(item, container, isMobile, index) {
     <div class="sparkle" style="--tx: 20px; --ty: 15px; top: 80%; left: 80%; animation-delay: 0.7s"></div>
 
     <div class="relative z-10">
-      <div class="icon-container w-14 h-14 bg-blue-800 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br ${item.gradient} group-hover:shadow-lg group-hover:shadow-red-500/30">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
+      <div class="icon-container w-14 h-14 bg-blue-800 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/30">
+        <div class="js-gradient-overlay absolute inset-0 rounded-2xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-svg w-8 h-8 text-white transition-all duration-500 relative z-10 group-hover:scale-110 group-hover:rotate-12">
           ${item.icon}
         </svg>
         <div class="absolute inset-0 rounded-2xl bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-700"></div>
@@ -203,7 +244,7 @@ function createCard(item, container, isMobile, index) {
         ${item.title}
       </h3>
 
-      <p class="text-blue-200 text-sm leading-relaxed mb-6 transition-all duration-500 transform translate-y-0 group-hover:translate-y-[-5px] group-hover:text-blue-100">
+      <p class="js-desc-anim text-blue-200 text-sm leading-relaxed mb-6 transition-all duration-500 transform translate-y-0 group-hover:translate-y-[-5px] group-hover:text-blue-100">
         ${item.desc}
       </p>
 
@@ -220,37 +261,30 @@ function createCard(item, container, isMobile, index) {
     <div class="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300"></div>
   `;
 
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateY = (x - centerX) / 30;
-    const rotateX = (centerY - y) / 30;
-    
-    card.style.transform = `
-      perspective(1000px) 
-      rotateX(${rotateX}deg) 
-      rotateY(${rotateY}deg) 
-      scale(1.02) 
-      translateY(-8px)
-    `;
-  });
+  // Desktop Hover Logic (Tilt)
+  if (!isMobile) {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateY = (x - centerX) / 30;
+      const rotateX = (centerY - y) / 30;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02) translateY(-8px)`;
+    });
 
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1) translateY(0)';
-    setTimeout(() => {
-      card.style.transform = '';
-    }, 300);
-  });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1) translateY(0)';
+      setTimeout(() => { card.style.transform = ''; }, 300);
+    });
+  }
 
   container.appendChild(card);
 }
 
-// MOBILE SLIDER SETUP
+// MOBILE SLIDER SETUP (With Auto-Slide)
 function initMobileSlider() {
   const mobileCards = document.querySelectorAll('.mobile-card');
   const prevBtn = document.getElementById('mobile-prev');
@@ -258,6 +292,7 @@ function initMobileSlider() {
   const currentSlideEl = document.getElementById('current-slide');
   
   let currentSlide = 0;
+  let slideInterval; // Variable to store the timer
   
   if (!mobileCards.length) return;
   
@@ -267,10 +302,23 @@ function initMobileSlider() {
     currentSlideEl.textContent = currentSlide + 1;
   }
   
+  // Function to start the auto-slider
+  function startAutoSlide() {
+    // Clear any existing interval to prevent duplicates
+    clearInterval(slideInterval);
+    // Set new interval (3000ms = 3 seconds)
+    slideInterval = setInterval(() => {
+      currentSlide = (currentSlide < mobileCards.length - 1) ? currentSlide + 1 : 0;
+      updateMobileSlider();
+    }, 3000);
+  }
+
+  // Manual Navigation Handling
   if (prevBtn) {
     prevBtn.onclick = () => {
       currentSlide = (currentSlide > 0) ? currentSlide - 1 : mobileCards.length - 1;
       updateMobileSlider();
+      startAutoSlide(); // Reset timer on click
     };
   }
   
@@ -278,26 +326,23 @@ function initMobileSlider() {
     nextBtn.onclick = () => {
       currentSlide = (currentSlide < mobileCards.length - 1) ? currentSlide + 1 : 0;
       updateMobileSlider();
+      startAutoSlide(); // Reset timer on click
     };
   }
   
+  // Initial Start
   updateMobileSlider();
+  startAutoSlide();
 }
 
 // DESKTOP GRID SETUP
 function initDesktopGrid() {
   const desktopCards = document.querySelectorAll('#desktop-grid .service-card');
-  
   if (!desktopCards.length) return;
   
-  // Set Initial State for desktop animations
   animate(desktopCards, { opacity: 0, scale: 0.95 }, { duration: 0 });
   
-  // Run Animation when scrolled into view
   inView("#services-section", () => {
-    // NOTE: Header animation was removed from here and moved to initServices
-    // so it runs on both desktop and mobile.
-
     animate(
       "#desktop-grid .service-card",
       { opacity: 1, scale: 1, y: [20, 0] },
