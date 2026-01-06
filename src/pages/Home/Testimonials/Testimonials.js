@@ -6,14 +6,8 @@ import ScrollTrigger from "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigge
 gsap.registerPlugin(ScrollTrigger);
 
 // --- DATA ---
-export const testimonialData = [
-    { id: 1, name: "Robert Fox", role: "Factory Manager", title: "Industrial Roofing", videoUrl: "https://youtube.com/shorts/6gExsLRc8ow?si=r1619CbP1eeqm-Rs", thumbnail: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop", rating: 5, quote: "Saved us millions in maintenance", duration: "1:24" },
-    { id: 2, name: "Jane Cooper", role: "Homeowner", title: "Residential Roof", videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop", rating: 5, quote: "Home value increased by 15%", duration: "2:15" },
-    { id: 3, name: "Guy Hawkins", role: "Architect", title: "Perfect Match", videoUrl: "https://www.instagram.com/reel/C3_xyZqvK7a/", thumbnail: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop", rating: 4, quote: "Matched our architectural vision", duration: "0:45" },
-    { id: 4, name: "Cody Fisher", role: "Site Engineer", title: "Most Reliable", videoUrl: "https://www.youtube.com/watch?v=ysz5S6P_bsu", thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", rating: 5, quote: "Best team in 15 years", duration: "1:55" },
-    { id: 5, name: "Sarah Johnson", role: "Building Manager", title: "Waterproofing", videoUrl: "https://www.youtube.com/watch?v=ysz5S6P_bsu", thumbnail: "https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=400&auto=format&fit=crop", rating: 5, quote: "Solved all leak issues", duration: "1:30" },
-    { id: 6, name: "Michael Chen", role: "Solar Consultant", title: "Solar Integration", videoUrl: "https://www.youtube.com/watch?v=ysz5S6P_bsu", thumbnail: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop", rating: 4, quote: "Perfect panel integration", duration: "2:10" }
-];
+export let testimonialData = [];
+
 
 // --- HELPERS ---
 function isInstagram(url) { return url.includes("instagram.com"); }
@@ -76,6 +70,34 @@ function closeVideoModal() {
     modal.classList.add('opacity-0', 'pointer-events-none');
     setTimeout(() => { iframe.src = ""; }, 300);
 }
+
+
+async function loadTestimonials() {
+    try {
+        const res = await fetch(
+            "http://localhost/GRP-Backend/api/video-testimonials/video-list.php"
+        );
+        const data = await res.json();
+
+        // Backend returns array → normalize keys for frontend
+        testimonialData = data.map(item => ({
+            id: item.id,
+            name: item.name,
+            role: item.role,
+            title: item.title,
+            videoUrl: item.video_url,   // 🔑 mapping
+            thumbnail: item.thumbnail,
+            rating: item.rating,
+            quote: item.quote,
+            duration: item.duration
+        }));
+
+        initTestimonials(); // 🔥 render AFTER data loads
+    } catch (err) {
+        console.error("Failed to load testimonials", err);
+    }
+}
+
 
 // --- INITIALIZATION ---
 export function initTestimonials() {
@@ -186,3 +208,4 @@ leftBtn.addEventListener('click', () => scrollOneCard(-1));
 rightBtn.addEventListener('click', () => scrollOneCard(1));
 
 }
+loadTestimonials();

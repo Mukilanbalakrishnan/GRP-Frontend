@@ -19,3 +19,55 @@ if (form) {
         }, 1500);
     });
 }
+
+
+
+
+const contactForm = document.getElementById("contactForm");
+
+contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("contact-name").value.trim();
+    const email = document.getElementById("contact-email").value.trim();
+    const phone = document.getElementById("contact-phone").value.trim();
+    const message = document.getElementById("contact-message").value.trim();
+
+    // Validation
+    if (!name || !email || !phone || !message) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    try {
+        const res = await fetch(
+            "http://localhost/GRP-Backend/api/enquiry-create.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    message
+                })
+            }
+        );
+
+        const data = await res.json();
+
+        if (!data.status) {
+            alert(data.message || "Submission failed");
+            return;
+        }
+
+        alert("Message sent successfully ✅");
+        contactForm.reset();
+
+    } catch (err) {
+        console.error("Contact form error:", err);
+        alert("Server error. Please try again later.");
+    }
+});

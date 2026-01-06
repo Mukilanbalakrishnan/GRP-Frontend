@@ -2,16 +2,11 @@
 // import { initNavbar } from "../../components/Navbar/Navbar";
 // import { initFooter } from "../../components/Footer/Footer";
 
-const galleryData = [
-    { id: 1, image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800', title: 'Mountain Landscape', category: 'nature', description: 'Beautiful mountain scenery' },
-    { id: 2, image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800', title: 'Modern Building', category: 'architecture', description: 'Contemporary architecture design' },
-    { id: 3, image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800', title: 'Portrait', category: 'people', description: 'Stunning portrait photography' },
-    { id: 4, image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800', title: 'Abstract Art', category: 'art', description: 'Modern abstract painting' },
-    { id: 5, image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800', title: 'Forest Path', category: 'nature', description: 'Peaceful forest trail' },
-    { id: 6, image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800', title: 'City Skyline', category: 'architecture', description: 'Urban cityscape at night' },
-    { id: 7, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800', title: 'Fashion Portrait', category: 'people', description: 'Fashion photography' },
-    { id: 8, image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800', title: 'Colorful Canvas', category: 'art', description: 'Vibrant artistic expression' }
-];
+const GALLERY_API =
+    "http://localhost/GRP-Backend/api/gallery/gallery-list.php";
+
+
+let galleryData = [];
 
 class Gallery {
     constructor() {
@@ -20,7 +15,8 @@ class Gallery {
         this.lightboxImage = document.getElementById('lightboxImage');
         this.lightboxCaption = document.getElementById('lightboxCaption');
         
-        this.originalData = galleryData;
+        this.originalData = [];
+
         this.displayData = []; 
         this.currentIndex = 0;
         this.isDragging = false;
@@ -34,18 +30,19 @@ class Gallery {
     }
 
     init() {
-        this.displayData = [...this.originalData, ...this.originalData, ...this.originalData];
-        this.currentIndex = this.originalData.length + Math.floor(this.originalData.length / 2);
-        this.renderGallery(this.displayData);
-        this.setupEventListeners();
-        requestAnimationFrame(() => this.updateCarousel(false));
-    }
+    this.loadGalleryFromDB();
+    this.setupEventListeners();
+}
+
 
     renderGallery(data) {
         if (!this.galleryGrid) return;
+        
+
         this.galleryGrid.innerHTML = '';
 
         data.forEach((item, index) => {
+            
             const galleryItem = document.createElement('div');
             galleryItem.className = 'gallery-item';
             galleryItem.dataset.index = index;
@@ -67,7 +64,7 @@ class Gallery {
             galleryItem.style.marginTop = `-${height / 2}px`;
 
             galleryItem.innerHTML = `
-                <img src="${item.image}" alt="${item.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:15px;">
+                <img src="${item.image}" alt="${item.title}" loading="eager" style="width:100%; height:100%; object-fit:cover; border-radius:15px;">
                 <div class="gallery-overlay">
                     <h3>${item.title}</h3>
                     <p>${item.description}</p>
@@ -87,6 +84,56 @@ class Gallery {
             this.galleryGrid.appendChild(galleryItem);
         });
     }
+
+    async loadGalleryFromDB() {
+    try {
+        const res = await fetch(GALLERY_API);
+        const data = await res.json();
+        
+
+        // ✅ API RETURNS ARRAY DIRECTLY
+        if (!Array.isArray(data)) {
+            console.error("Invalid gallery API response:", data);
+            return;
+        }
+        
+
+        this.originalData = data.map(item => {
+    return {
+        id: item.id,
+        image: item.url || "",   // ✅ USE url DIRECTLY
+        title: item.title || "",
+        category: item.category || "",
+        description: item.description || ""
+    };
+});
+
+
+
+
+        if (this.originalData.length === 0) return;
+
+        // Infinite carousel
+        this.displayData = [
+            ...this.originalData,
+            ...this.originalData,
+            ...this.originalData
+        ];
+
+        this.currentIndex =
+            this.originalData.length +
+            Math.floor(this.originalData.length / 2);
+
+        this.renderGallery(this.displayData);
+        requestAnimationFrame(() => this.updateCarousel(false));
+
+    } catch (err) {
+        console.error("Gallery fetch failed", err);
+    }
+}
+
+
+
 
     setupEventListeners() {
         const closeBtn = document.querySelector('.lightbox-close');
@@ -264,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initNavbar === 'function') initNavbar();
     if (typeof initFooter === 'function') initFooter();
     new Gallery();
-    console.log("Gallery Page Loaded - Z-Index Fixed");
+    
 });
 
 if (typeof module !== 'undefined' && module.exports) {
