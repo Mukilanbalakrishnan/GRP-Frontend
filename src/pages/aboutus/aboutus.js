@@ -46,49 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Review Carousel Logic
     // -------------------------------------------------------------
 
-    const reviews = [
-        {
-            id: 1,
-            author: "Alex Johnson",
-            role: "Verified Client",
-            text: "Excellent service! Highly recommended for their professionalism and attention to detail. They exceeded all our expectations.",
-            image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 2,
-            author: "Sarah Williams",
-            role: "Project Manager",
-            text: "The team was incredibly responsive and delivered the project ahead of schedule. Truly a pleasure to work with.",
-            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 3,
-            author: "Michael Chen",
-            role: "Tech Lead",
-            text: "Innovative solutions and top-tier code quality. Their expertise helped us solve complex challenges effortlessly.",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 4,
-            author: "Emily Davis",
-            role: "Creative Director",
-            text: "A fantastic eye for design and user experience. The final product looks stunning and works perfectly.",
-            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 5,
-            author: "David Brown",
-            role: "Startup Founder",
-            text: "They helped us scale our MVP into a full-fledged product. Their technical guidance was invaluable.",
-            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 6,
-            author: "Lisa Anderson",
-            role: "Marketing Head",
-            text: "Our conversion rates skyrocketed after the redesign. The team understood our brand voice perfectly.",
-            image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop"
-        }
+    let reviews = [
+        
     ];
 
     let currentReviewIndex = 0;
@@ -100,6 +59,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewText = document.getElementById('review-text');
 
     console.log("Carousel Script Loaded. Elements:", { prevBtn, nextBtn, reviewImg });
+
+
+
+    async function loadAboutReviews() {
+    try {
+        const res = await fetch(
+            "http://localhost/GRP-Backend/api/about/about-list.php"
+        );
+
+        const data = await res.json();
+
+        // Map backend → frontend format (DO NOT TOUCH UI LOGIC)
+        reviews = data.map(item => ({
+            id: item.id,
+            author: item.name,
+            role: item.role,
+            text: item.text,
+            image: item.image
+                ? `http://localhost/GRP-Backend/${item.image}`
+                : ""
+        }));
+
+        // Safety check
+        if (reviews.length === 0) return;
+
+        // Load first review
+        currentReviewIndex = 0;
+        updateReview(currentReviewIndex);
+
+        // Restart auto scroll
+        startAutoScroll();
+
+    } catch (err) {
+        console.error("Failed to load about reviews", err);
+    }
+}
+
 
     function updateReview(index) {
         const review = reviews[index];
@@ -189,5 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Start initial timer
-    startAutoScroll();
+    loadAboutReviews();
+
 });

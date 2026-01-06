@@ -61,25 +61,26 @@ export function initEnquiryFormGlobal() {
                         <form id="globalEnquiryFormMain" class="space-y-4">
                             <div class="relative group global-form-item opacity-0">
                                 <i class="ph-bold ph-user absolute left-3 top-3.5 text-gray-400 group-focus-within:text-blue-600 transition-colors"></i>
-                                <input type="text" placeholder="Your Name" required
+                                <input type="text" name="name" placeholder="Your Name" required
+
                                     class="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none">
                             </div>
 
                             <div class="relative group global-form-item opacity-0">
                                 <i class="ph-bold ph-envelope-simple absolute left-3 top-3.5 text-gray-400 group-focus-within:text-blue-600 transition-colors"></i>
-                                <input type="email" placeholder="Email Address" required
+                                <input type="email" name="email" placeholder="Email Address" required
                                     class="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none">
                             </div>
 
                             <div class="relative group global-form-item opacity-0">
                                 <i class="ph-bold ph-phone absolute left-3 top-3.5 text-gray-400 group-focus-within:text-blue-600 transition-colors"></i>
-                                <input type="tel" placeholder="Phone Number" required
+                                <input type="tel" name="phone" placeholder="Phone Number" required
                                     class="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none">
                             </div>
 
                             <div class="relative group global-form-item opacity-0">
                                 <i class="ph-bold ph-chat-text absolute left-3 top-3.5 text-gray-400 group-focus-within:text-blue-600 transition-colors"></i>
-                                <textarea rows="3" placeholder="How can we help?" required
+                                <textarea  name="message" rows="3" placeholder="How can we help?" required
                                     class="w-full pl-10 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none resize-none"></textarea>
                             </div>
 
@@ -172,32 +173,80 @@ export function initEnquiryFormGlobal() {
     startIdleAnimation();
 
     form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('button');
-        const originalContent = btn.innerHTML;
+    e.preventDefault();
+
+    const btn = form.querySelector('button');
+    const originalContent = btn.innerHTML;
+
+    // ✅ 1. Read values from form
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const phone = form.querySelector('[name="phone"]').value.trim();
+    const message = form.querySelector('[name="message"]').value.trim();
+
+    if (!name || !email || !phone || !message) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    try {
+        // ✅ 2. Send data to backend
+        const response = await fetch(
+            "http://localhost/GRP-Backend/api/enquiry-create.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    message
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!result.status) {
+            alert(result.message || "Failed to send enquiry");
+            return;
+        }
+
+        // ✅ 3. UI success animation (your logic)
         btn.disabled = true;
         btn.classList.add('cursor-not-allowed', 'opacity-80');
-        await animate(btn, { scale: 0.95 }, { duration: 0.1 }).finished;
+
         btn.innerHTML = `<i class="ph-bold ph-spinner animate-spin text-xl"></i> Sending...`;
-        await animate(btn, { scale: 1 }, { duration: 0.1 }).finished;
-        setTimeout(async () => {
+
+        setTimeout(() => {
             btn.classList.replace('bg-blue-600', 'bg-green-600');
-            btn.classList.replace('hover:bg-blue-700', 'hover:bg-green-700');
-            await animate(btn, { scale: 0.95 }, { duration: 0.1 }).finished;
             btn.innerHTML = `<i class="ph-bold ph-check text-xl"></i> Sent!`;
-            await animate(btn, { scale: 1 }, { duration: 0.1 }).finished;
-            confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, zIndex: 105 });
+
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.6 },
+                zIndex: 105
+            });
+
             form.reset();
+
             setTimeout(() => {
                 closeModal();
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.classList.remove('cursor-not-allowed', 'opacity-80');
-                    btn.innerHTML = originalContent;
-                    btn.classList.replace('bg-green-600', 'bg-blue-600');
-                    btn.classList.replace('hover:bg-green-700', 'hover:bg-blue-700');
-                }, 500); 
-            }, 1200);
-        }, 1500);
-    });
+                btn.disabled = false;
+                btn.classList.remove('cursor-not-allowed', 'opacity-80');
+                btn.innerHTML = originalContent;
+                btn.classList.replace('bg-green-600', 'bg-blue-600');
+            }, 1500);
+        }, 600);
+
+    } catch (err) {
+        console.error(err);
+        alert("Server error. Please try again later.");
+    }
+});
+
+
 }

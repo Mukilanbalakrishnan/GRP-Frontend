@@ -165,36 +165,41 @@
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
 
                 <form id="contactForm" class="space-y-6">
-                    <div>
-                        <label for="name" class="sr-only">Name</label>
-                        <input type="text" id="name" placeholder="Name"
-                            class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-orange-500 transition-colors text-gray-700">
-                    </div>
 
-                    <div>
-                        <label for="email" class="sr-only">E-mail address</label>
-                        <input type="email" id="email" placeholder="E-mail address"
-                            class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-orange-500 transition-colors text-gray-700">
-                    </div>
+    <div>
+        <input type="text" id="contact-name" placeholder="Name"
+            class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-orange-500 transition-colors text-gray-700">
+    </div>
 
-                    <div>
-                        <label for="message" class="sr-only">Message</label>
-                        <textarea id="message" rows="4" placeholder="Message"
-                            class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-orange-500 transition-colors text-gray-700 resize-none"></textarea>
-                    </div>
+    <div>
+        <input type="email" id="contact-email" placeholder="E-mail address"
+            class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-orange-500 transition-colors text-gray-700">
+    </div>
 
-                    <p class="text-xs text-gray-400">
-                        By submitting, you agree to the processing of your personal data by us as described in the
-                        Privacy Statement.
-                    </p>
+    <div>
+        <input type="tel" id="contact-phone" placeholder="Phone No"
+            class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-orange-500 transition-colors text-gray-700">
+    </div>
 
-                    <div class="flex justify-end">
-                        <button type="submit"
-                            class="bg-orange-500 text-white font-bold py-3 px-10 rounded-full hover:bg-orange-600 hover:shadow-lg transform active:scale-95 transition-all">
-                            Submit
-                        </button>
-                    </div>
-                </form>
+    <div>
+        <textarea id="contact-message" rows="4" placeholder="Message"
+            class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-orange-500 transition-colors text-gray-700 resize-none"></textarea>
+    </div>
+
+    <p class="text-xs text-gray-400">
+        By submitting, you agree to the processing of your personal data by us as described in the
+        Privacy Statement.
+    </p>
+
+    <div class="flex justify-end">
+        <button type="submit"
+            class="bg-orange-500 text-white font-bold py-3 px-10 rounded-full hover:bg-orange-600 hover:shadow-lg transform active:scale-95 transition-all">
+            Submit
+        </button>
+    </div>
+
+</form>
+
             </div>
         </div>
     </section>

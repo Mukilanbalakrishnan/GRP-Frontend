@@ -10,14 +10,8 @@ let desktopPage = 0;
 let autoSlideInterval;
 
 // --- DATA ---
-const reviews = [
-    { id: 1, name: "John Doe", role: "Factory Owner", text: "The industrial roofing system exceeded our expectations. Professional, efficient, and top-notch quality.", rating: 5 },
-    { id: 2, name: "Sarah Lee", role: "Ops Manager", text: "Rapid waterproofing solution executed flawlessly. They truly understand industrial needs.", rating: 5 },
-    { id: 3, name: "Mike Ross", role: "Facility Director", text: "Preventive maintenance saved us thousands. Highly reliable partners for the long term.", rating: 4 },
-    { id: 4, name: "Emily White", role: "Lead Architect", text: "Innovative solar integration that respects the building's aesthetic. A pleasure to work with.", rating: 5 },
-    { id: 5, name: "Robert King", role: "Plant Manager", text: "Waterproofing that withstands extreme chemical exposure. Unmatched technical expertise.", rating: 5 },
-    { id: 6, name: "Lisa Miller", role: "Property Director", text: "Kept our complex running during severe weather. The most responsive team we've hired.", rating: 5 },
-];
+let reviews = [];
+
 
 // --- HELPER: Star Generator ---
 function getStars(rating) {
@@ -169,6 +163,39 @@ function createCard(item, isMobile) {
     return card;
 }
 
+
+
+async function loadTextTestimonials() {
+    try {
+        const res = await fetch(
+            "http://localhost/GRP-Backend/api/text-testimonals/text-list.php"
+        );
+
+        const data = await res.json();
+
+        // Map backend keys → frontend expects
+        reviews = data.map(item => ({
+            id: item.id,
+            name: item.name,
+            role: item.role,
+            text: item.text,
+            rating: parseInt(item.rating)
+        }));
+
+        // 🔥 Re-render based on screen size
+        if (window.innerWidth >= 768) {
+            desktopPage = 0;
+            renderDesktop();
+        } else {
+            initMobile();
+        }
+
+    } catch (err) {
+        console.error("Failed to load text testimonials", err);
+    }
+}
+
+
 // --- RENDER LOGIC ---
 function renderDesktop() {
     const grid = document.getElementById("testimonial-desktop-grid");
@@ -279,6 +306,7 @@ function pauseAutoSlide() {
 
 // --- INITIALIZATION ---
 export function initTestimonialsText() {
+    loadTextTestimonials();
     const style = document.createElement('style');
     style.textContent = `
         @keyframes float {

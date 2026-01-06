@@ -1,50 +1,18 @@
 import { animate, stagger, inView } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
 
 // 1. THE DATA
-const servicesData = [
-  {
-    title: "Industrial Roofing",
-    desc: "Heavy-duty metal and composite roofing",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />`,
-    gradient: "from-orange-600 to-amber-500"
-  },
-  {
-    title: "Residential Shingles",
-    desc: "Premium asphalt and slate shingles that provide aesthetic appeal and long-lasting protection.",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />`,
-    gradient: "from-emerald-600 to-teal-500"
-  },
-  {
-    title: "Waterproofing",
-    desc: "Advanced coating and sealing technologies to prevent leaks and moisture damage.",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.263l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />`,
-    gradient: "from-blue-600 to-cyan-500"
-  },
-  {
-    title: "Roof Maintenance",
-    desc: "Regular inspections and minor repairs to extend the lifespan of your roof significantly.",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />`,
-    gradient: "from-amber-600 to-yellow-500"
-  },
-  {
-    title: "Solar Integration",
-    desc: "Seamlessly integrate solar panels with your roofing structure for maximum energy efficiency.",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.263l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />`,
-    gradient: "from-yellow-500 to-orange-500"
-  },
-  {
-    title: "Consulting",
-    desc: "Professional architectural consulting to ensure your roof meets all safety and design standards.",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />`,
-    gradient: "from-purple-600 to-indigo-500"
-  },
-];
+const API_BASE = "http://localhost/GRP-Backend/api/services";
+const IMAGE_BASE = "http://localhost/GRP-Backend/";
+let servicesData = [];
+
 
 let mobileSlideInterval = null;
 
 
 // 2. INITIALIZATION FUNCTION
-export function initServices() {
+export async function initServices() {
+  await fetchServices();
+
   const desktopGrid = document.getElementById("desktop-grid");
   const mobileSliderContainer = document.getElementById("mobile-slider-container");
   const currentSlideEl = document.getElementById("current-slide");
@@ -212,6 +180,16 @@ export function initServices() {
   });
 }
 
+async function fetchServices() {
+  try {
+    const res = await fetch(`${API_BASE}/service-list.php`);
+    servicesData = await res.json();
+  } catch (err) {
+    console.error("Failed to load services", err);
+    servicesData = [];
+  }
+}
+
 // Function to create a card
 function createCard(item, container, isMobile, index) {
   const card = document.createElement("div");
@@ -237,9 +215,14 @@ function createCard(item, container, isMobile, index) {
       <div class="icon-container w-14 h-14 bg-blue-800 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/30">
         <div class="js-gradient-overlay absolute inset-0 rounded-2xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-svg w-8 h-8 text-white transition-all duration-500 relative z-10 group-hover:scale-110 group-hover:rotate-12">
-          ${item.icon}
-        </svg>
+        <img
+  src="${IMAGE_BASE}${item.image_path}"
+  alt="${item.title}"
+  class="icon-svg w-8 h-8 object-contain relative z-10
+         transition-all duration-500
+         group-hover:scale-110 group-hover:rotate-12"
+/>
+
         <div class="absolute inset-0 rounded-2xl bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-700"></div>
       </div>
 
@@ -248,16 +231,10 @@ function createCard(item, container, isMobile, index) {
       </h3>
 
       <p class="js-desc-anim text-blue-200 text-sm leading-relaxed mb-6 transition-all duration-500 transform translate-y-0 group-hover:translate-y-[-5px] group-hover:text-blue-100">
-        ${item.desc}
+        ${item.description}
       </p>
 
-      <div class="relative overflow-hidden rounded-lg inline-block">
-        <span class="text-red-500 font-bold text-sm uppercase tracking-wider group-hover:text-white transition-colors duration-300 flex items-center gap-2 relative z-10">
-          LEARN MORE 
-          <span class="transform transition-transform duration-500 group-hover:translate-x-2 group-hover:scale-110">→</span>
-        </span>
-        <div class="absolute inset-0 bg-gradient-to-r from-red-600/0 via-red-600/20 to-red-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-      </div>
+      
     </div>
     
     <div class="absolute top-4 right-4 w-3 h-3 border-t border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"></div>

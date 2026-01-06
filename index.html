@@ -30,5 +30,25 @@
 
     <script type="module" src="./main.js"></script>
     <div id="modal-root"></div>
+
+
+    <script>
+(function recordVisit() {
+    const VISIT_KEY = "grp_visited_today";
+    const today = new Date().toISOString().split("T")[0];
+
+    const stored = localStorage.getItem(VISIT_KEY);
+
+    // Count only once per day
+    if (stored === today) return;
+
+    fetch("http://localhost/GRP-Backend/api/visits/record-visit.php")
+        .then(() => {
+            localStorage.setItem(VISIT_KEY, today);
+        })
+        .catch(err => console.error("Visit count failed", err));
+})();
+</script>
+
 </body>
 </html>
