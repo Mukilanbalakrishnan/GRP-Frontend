@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Brand.</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0066FF',
+                            dark: '#111827',
+                            darkblue: '#1E3A8A',
+                            cyan: '#67E8F9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .hidden-section {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white">
+                        <i class="ph-bold ph-cube text-2xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-900">Brand.</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="../../../../../index.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Home</a>
+                    <a href="../aboutus/aboutus.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">About Us</a>
+                    <a href="../services/services.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <a href="../products.html" class="text-blue-600 font-semibold">Products</a>
+                    <a href="../gallary/hero/Gallery.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Gallery</a>
+                    <a href="../contact/contact.html"
+                        class="px-6 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg font-medium">Contact
+                        Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none p-2">
+                        <i id="menu-icon" class="ph-bold ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="../../../../../index.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Home</a>
+                <a href="../aboutus/aboutus.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">About
+                    Us</a>
+                <a href="../services/services.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Services</a>
+                <a href="../products.html"
+                    class="block px-4 py-3 text-base font-bold text-blue-600 bg-blue-50 rounded-lg">Products</a>
+                <a href="../gallary/hero/Gallery.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Gallery</a>
+                <a href="../contact/contact.html"
+                    class="block px-4 py-3 text-base font-medium text-white bg-blue-600 rounded-lg mt-4 text-center shadow-md">Contact
+                    Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Spacer for fixed navbar -->
+    <div class="h-20"></div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- Header Section -->
+        <section class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop"
+                    alt="Products Background" class="w-full h-full object-cover">
+                <!-- Dark Blue Overlay -->
+                <div class="absolute inset-0 bg-brand-darkblue/80 mix-blend-multiply"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 animate-fade-in drop-shadow-lg"
+                    id="page-title">Our Products
+                </h1>
+                <p class="text-blue-100 text-lg md:text-xl animate-fade-in delay-100 max-w-2xl mx-auto font-light">
+                    Explore our range of high-quality products designed to meet your needs.
+                </p>
+                <a href="../products.html" class="inline-block mt-6 text-white hover:text-cyan-300 transition-colors">
+                    <i class="ph-bold ph-arrow-left mr-1"></i> Back to Categories
+                </a>
+            </div>
+        </section>
+
+        <!-- Products Grid Container -->
+
+        <!-- Section: Ceramic Roof Tiles (ID: ceramic) -->
+        <section id="category-ceramic" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 pb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#002b49] mb-4">CERAMIC ROOF TILES</h2>
+                <div class="w-24 h-1 bg-[#e31e24] mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Type 1: Elbano -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-ceramic-elbano"
+                            src="https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=500&auto=format&fit=crop"
+                            alt="Ceramic Elbano Series"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">ELBANO SERIES
+                        </h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'ceramic-elbano', 'img-ceramic-elbano')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 2: Roman -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-ceramic-romano"
+                            src="https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=500&auto=format&fit=crop"
+                            alt="Ceramic Romano"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 hue-rotate-[30deg]">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">ROMANO SERIES
+                        </h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'ceramic-romano', 'img-ceramic-romano')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 3: Titan -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-ceramic-titan"
+                            src="https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=500&auto=format&fit=crop"
+                            alt="Ceramic Titan"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 grayscale">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">TITAN SERIES</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'ceramic-titan', 'img-ceramic-titan')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 4: Viano -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-ceramic-viano"
+                            src="https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=500&auto=format&fit=crop"
+                            alt="Ceramic Viano"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 sepia">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">VIANO SERIES</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'ceramic-viano', 'img-ceramic-viano')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Clay Roof Tiles (ID: clay) -->
+        <section id="category-clay"
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 pb-24 border-t border-gray-100">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#002b49] mb-4">CLAY ROOF TILES</h2>
+                <div class="w-24 h-1 bg-[#e31e24] mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Type 1: Spanish -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-clay-spanish"
+                            src="https://images.unsplash.com/photo-1598418043689-50c5bb17202d?q=80&w=500&auto=format&fit=crop"
+                            alt="Spanish Clay"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">SPANISH CLAY</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'clay-spanish', 'img-clay-spanish')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 2: French -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-clay-french"
+                            src="https://images.unsplash.com/photo-1598418043689-50c5bb17202d?q=80&w=500&auto=format&fit=crop"
+                            alt="French Clay"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 hue-rotate-[10deg]">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">FRENCH CLAY</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'clay-french', 'img-clay-french')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 3: Roman -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-clay-roman"
+                            src="https://images.unsplash.com/photo-1598418043689-50c5bb17202d?q=80&w=500&auto=format&fit=crop"
+                            alt="Roman Clay"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 hue-rotate-[40deg]">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">ROMAN CLAY</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'clay-roman', 'img-clay-roman')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 4: Mission -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-clay-mission"
+                            src="https://images.unsplash.com/photo-1598418043689-50c5bb17202d?q=80&w=500&auto=format&fit=crop"
+                            alt="Mission Clay"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 grayscale sepia">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">MISSION CLAY</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'clay-mission', 'img-clay-mission')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Concrete Roof Tiles (ID: concrete) -->
+        <section id="category-concrete"
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 pb-24 border-t border-gray-100 bg-gray-50/50">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#002b49] mb-4">CONCRETE ROOF TILES</h2>
+                <div class="w-24 h-1 bg-[#e31e24] mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Type 1: Flat -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-concrete-flat"
+                            src="https://images.unsplash.com/photo-1520697830682-bbb6e85e420f?q=80&w=500&auto=format&fit=crop"
+                            alt="Concrete Flat"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">FLAT SERIES</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'concrete-flat', 'img-concrete-flat')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 2: Roman -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-concrete-roman"
+                            src="https://images.unsplash.com/photo-1520697830682-bbb6e85e420f?q=80&w=500&auto=format&fit=crop"
+                            alt="Concrete Roman"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 hue-rotate-[20deg]">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">ROMAN SERIES</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'concrete-roman', 'img-concrete-roman')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 3: Shake -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-concrete-shake"
+                            src="https://images.unsplash.com/photo-1520697830682-bbb6e85e420f?q=80&w=500&auto=format&fit=crop"
+                            alt="Concrete Shake"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 sepia">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">SHAKE SERIES</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'concrete-shake', 'img-concrete-shake')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 4: Shingle -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img id="img-concrete-shingle"
+                            src="https://images.unsplash.com/photo-1520697830682-bbb6e85e420f?q=80&w=500&auto=format&fit=crop"
+                            alt="Concrete Shingle"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 hue-rotate-[180deg] grayscale">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">SHINGLE SERIES
+                        </h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'concrete-shingle', 'img-concrete-shingle')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: White Cement Jally (ID: white-cement) -->
+        <section id="category-white-cement"
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 pb-24 border-t border-gray-100">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#002b49] mb-4">WHITE CEMENT JALLY</h2>
+                <div class="w-24 h-1 bg-[#e31e24] mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Type 1: Floral -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-72 bg-gray-100/50 p-6 relative flex items-center justify-center overflow-hidden">
+                        <img id="img-cement-floral"
+                            src="https://images.unsplash.com/photo-1522851458296-189f81d1203d?q=80&w=500&auto=format&fit=crop"
+                            alt="Floral Jally"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">FLORAL JALLY</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'cement-floral', 'img-cement-floral')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 2: Diamond -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-72 bg-gray-100/50 p-6 relative flex items-center justify-center overflow-hidden">
+                        <img id="img-cement-diamond"
+                            src="https://images.unsplash.com/photo-1522851458296-189f81d1203d?q=80&w=500&auto=format&fit=crop"
+                            alt="Diamond Jally"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 grayscale">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">DIAMOND JALLY
+                        </h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'cement-diamond', 'img-cement-diamond')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 3: Star -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-72 bg-gray-100/50 p-6 relative flex items-center justify-center overflow-hidden">
+                        <img id="img-cement-star"
+                            src="https://images.unsplash.com/photo-1522851458296-189f81d1203d?q=80&w=500&auto=format&fit=crop"
+                            alt="Star Jally"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 sepia">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">STAR JALLY</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'cement-star', 'img-cement-star')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Type 4: Grid -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-[0_5px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-72 bg-gray-100/50 p-6 relative flex items-center justify-center overflow-hidden">
+                        <img id="img-cement-grid"
+                            src="https://images.unsplash.com/photo-1522851458296-189f81d1203d?q=80&w=500&auto=format&fit=crop"
+                            alt="Grid Jally"
+                            class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500 hue-rotate-[180deg]">
+                    </div>
+                    <div class="p-6 text-center bg-white relative">
+                        <h3 class="text-lg font-extrabold text-[#002b49] mb-2 uppercase tracking-wide">GRID JALLY</h3>
+                        <button
+                            class="color-picker-btn mx-auto block text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 uppercase tracking-[0.2em] mb-2 px-4 py-1.5 rounded-full transition-colors border border-red-100"
+                            onclick="openColorPicker(event, 'cement-grid', 'img-cement-grid')">
+                            Colour Options <i class="ph-bold ph-caret-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll to Top Button -->
+        <button id="scrollToTopBtn"
+            class="fixed bottom-8 right-8 bg-[#e31e24] text-white p-3 rounded-full shadow-lg hover:bg-red-700 transition-all transform hover:-translate-y-1 opacity-0 pointer-events-none z-40">
+            <i class="ph-bold ph-arrow-up text-xl"></i>
+        </button>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="product-view.js"></script>
+
+    <!-- Color Picker Modal -->
+    <div id="color-picker-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-3xl p-8 max-w-lg w-full mx-4 shadow-2xl transform transition-all scale-100">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Select a Colour</h3>
+                <button onclick="closeColorPicker()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <i class="ph-bold ph-x text-xl text-gray-500"></i>
+                </button>
+            </div>
+
+            <div id="color-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-6">
+                <!-- Color options will be injected here via JS -->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -49,6 +49,8 @@
                     <a href="../../aboutus/aboutus.html"
                         class="text-gray-600 hover:text-blue-600 font-medium transition-colors">About Us</a>
                     <a href="../services.html" class="text-blue-600 font-semibold">Services</a>
+                    <a href="../../products/products.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Products</a>
                     <a href="../../gallary/hero/Gallery.html"
                         class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Gallery</a>
                     <a href="../../contact/contact.html"
@@ -73,6 +75,8 @@
                     Us</a>
                 <a href="../services.html"
                     class="block px-4 py-3 text-base font-bold text-blue-600 bg-blue-50 rounded-lg">Services</a>
+                <a href="../../products/products.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Products</a>
                 <a href="../../gallary/hero/Gallery.html"
                     class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Gallery</a>
                 <a href="../../contact/contact.html"
@@ -183,12 +187,17 @@
                             <div>
                                 <select id="service-select"
                                     class="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
-                                    <option value="water-line">Water Line Repair</option>
-                                    <option value="gas-line">Gas Line Services</option>
-                                    <option value="drain-cleaning">Drain Cleaning</option>
-                                    <option value="faucet-leak">Faucet & Leak Repairs</option>
-                                    <option value="remodeling">Remodeling Service</option>
-                                    <option value="sewer-repair">Sewer Repair</option>
+                                    <option value="ceramic-tile">Ceramic Tile Roofing</option>
+                                    <option value="cement-tile">Cement Tile Roofing</option>
+                                    <option value="clay-tile">Clay Tile Roofing</option>
+                                    <option value="shingles">Shingles Roofing</option>
+                                    <option value="jally-pergola">Jally Pergola Work</option>
+                                    <option value="stone-coated-sheet">Stone Coated Sheet Roofing</option>
+                                    <option value="puff-pannel">Puff Pannel Sheet Work</option>
+                                    <option value="upvc-sheet">UPVC Sheet Work</option>
+                                    <option value="polycarbonate-sheet">Polycarbonate Sheet Work</option>
+                                    <option value="aluminium-sheet">Aluminium Sheet Work</option>
+                                    <option value="metal-sheet">Metal Sheet Roofing Work</option>
                                 </select>
                             </div>
                             <div>
@@ -238,227 +247,7 @@
     </div>
 
     <script src="../services.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const servicesData = {
-                'water-line': {
-                    title: "Water Line Repair",
-                    subtitle: "Main line expertise",
-                    heroImage: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=1600&auto=format&fit=crop",
-                    aboutTitle: "About Water Line Repair",
-                    aboutDescription: "Low water pressure or wet spots in your yard can indicate a main water line leak. We repair and replace damaged water lines to restore reliable, clean water supply to your home, ensuring the safety of your family.",
-                    aboutImage: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Main Line Leak Detection",
-                        "Copper & PEX Piping",
-                        "Pressure Regulator Replacement"
-                    ],
-                    videos: [
-                        { thumbnail: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1542596594-649edbc13630?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" }
-                    ]
-                },
-                'gas-line': {
-                    title: "Gas Line Services",
-                    subtitle: "Safe & Certified",
-                    heroImage: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1600&auto=format&fit=crop",
-                    aboutTitle: "About Gas Line Services",
-                    aboutDescription: "Natural gas is efficient but dangerous if handled incorrectly. Our certified technicians safely install new gas lines for appliances and provide emergency leak detection and repair services for your peace of mind.",
-                    aboutImage: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "New Gas Line for Stoves/Dryers",
-                        "BBQ Grill Gas Hookup",
-                        "Emergency Shut-off Services"
-                    ],
-                    videos: [
-                        { thumbnail: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" }
-                    ]
-                },
-                'drain-cleaning': {
-                    title: "Drain Cleaning",
-                    subtitle: "Restore proper flow today",
-                    heroImage: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1600&auto=format&fit=crop",
-                    aboutTitle: "About Drain Cleaning",
-                    aboutDescription: "Stubborn clogs can cause backups and unpleasant odors. Using hydro-jetting and snake technology, we clear blockages deep within your plumbing system to ensure everything flows smoothly again.",
-                    aboutImage: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Hydro-jetting Technology",
-                        "Video Inspection",
-                        "Root Removal"
-                    ],
-                    videos: [
-                        { thumbnail: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" }
-                    ]
-                },
-                'faucet-leak': {
-                    title: "Faucet & Leak Repairs",
-                    subtitle: "Stop wasting water and money",
-                    heroImage: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=1600&auto=format&fit=crop",
-                    aboutTitle: "About Faucet Repairs",
-                    aboutDescription: "A dripping faucet or hidden pipe leak can waste gallons of water and cause significant structural damage over time. Our experienced team uses advanced technology to locate and fix leaks quickly, ensuring your home remains dry and efficient.",
-                    aboutImage: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Faucet repair and replacement",
-                        "Advanced Leak Detection",
-                        "Emergency Pipe Fixing"
-                    ],
-                    videos: [
-                        { thumbnail: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1542596594-649edbc13630?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1558507652-2d9626c4e67a?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" }
-                    ]
-                },
-                'remodeling': {
-                    title: "Remodeling Service",
-                    subtitle: "Transform your kitchen & bath",
-                    heroImage: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1600&auto=format&fit=crop",
-                    aboutTitle: "About Remodeling",
-                    aboutDescription: "Ready for an upgrade? We specialize in installing modern plumbing fixtures, rerouting pipes, and ensuring your new kitchen or bathroom is both beautiful and functional. From luxury showers to gourmet kitchen sinks, we handle it all.",
-                    aboutImage: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Modern Fixture Installation",
-                        "Pipe Rerouting for New Layouts",
-                        "Appliance Hookups"
-                    ],
-                    videos: [
-                        { thumbnail: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" }
-                    ]
-                },
-                'sewer-repair': {
-                    title: "Sewer Repair",
-                    subtitle: "Trenchless solutions",
-                    heroImage: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=1600&auto=format&fit=crop",
-                    aboutTitle: "About Sewer Repair",
-                    aboutDescription: "Sewer line issues can be messy and disruptive. We use trenchless repair methods whenever possible to fix cracks, bellies, and collapses without destroying your yard or driveway.",
-                    aboutImage: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=800&auto=format&fit=crop",
-                    bulletPoints: [
-                        "Camera Inspection & Diagnosis",
-                        "Trenchless Pipe Lining",
-                        "Minimal Excavation"
-                    ],
-                    videos: [
-                        { thumbnail: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=600&auto=format&fit=crop", src: "../videos/video 2.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=600&auto=format&fit=crop", src: "../videos/video 4.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=600&auto=format&fit=crop", src: "../videos/video 1.mp4" },
-                        { thumbnail: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop", src: "../videos/video 3.mp4" }
-                    ]
-                }
-            };
-
-            const params = new URLSearchParams(window.location.search);
-            const serviceId = params.get('service');
-            const data = servicesData[serviceId];
-
-            // Modal Elements
-            const modal = document.getElementById('video-modal');
-            const modalBackdrop = document.getElementById('modal-backdrop');
-            const modalContent = document.getElementById('modal-content');
-            const modalVideo = document.getElementById('modal-video');
-            const closeModalBtn = document.getElementById('close-modal');
-
-            function openModal(videoSrc) {
-                modalVideo.src = videoSrc;
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-
-                // Trigger animations
-                setTimeout(() => {
-                    modalBackdrop.classList.remove('opacity-0');
-                    modalContent.classList.remove('opacity-0', 'scale-95');
-                }, 10);
-
-                modalVideo.play().catch(e => console.log('Auto-play prevented:', e));
-            }
-
-            function closeModal() {
-                modalBackdrop.classList.add('opacity-0');
-                modalContent.classList.add('opacity-0', 'scale-95');
-
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                    modalVideo.pause();
-                    modalVideo.src = ''; // Stop buffering
-                }, 300);
-            }
-
-            // Close triggers
-            if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-            if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
-            });
-
-            if (data) {
-                document.title = data.title + " - Brand.";
-                document.getElementById('hero-title').textContent = data.title;
-                document.getElementById('hero-subtitle').textContent = data.subtitle;
-                document.getElementById('hero-image').src = data.heroImage;
-
-                document.getElementById('about-title').textContent = data.aboutTitle;
-                document.getElementById('about-description').textContent = data.aboutDescription;
-                document.getElementById('about-image').src = data.aboutImage;
-
-                // Also update booking image to match about image
-                document.getElementById('booking-image').src = data.aboutImage;
-
-                const bulletList = document.getElementById('bullet-points');
-                bulletList.innerHTML = '';
-                data.bulletPoints.forEach(point => {
-                    const li = document.createElement('li');
-                    li.className = 'flex items-center gap-3 text-gray-700';
-                    li.innerHTML = `<i class="ph-bold ph-check text-blue-600"></i> ${point}`;
-                    bulletList.appendChild(li);
-                });
-
-                // Populate Video Grid
-                const videoGrid = document.getElementById('video-grid');
-                if (videoGrid && data.videos) {
-                    videoGrid.innerHTML = ''; // Clear existing
-                    data.videos.forEach(video => {
-                        const videoCard = document.createElement('div');
-                        videoCard.className = 'aspect-[9/16] bg-blue-100 rounded-xl overflow-hidden shadow-md relative group cursor-pointer border border-blue-200 transition-transform hover:-translate-y-1';
-                        videoCard.innerHTML = `
-                            <img src="${video.thumbnail}" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="ph-fill ph-play-circle text-5xl text-blue-600 opacity-90 group-hover:scale-110 transition-transform shadow-lg rounded-full bg-white/20 backdrop-blur-sm p-2"></i>
-                            </div>
-                        `;
-
-                        // Click handler to open modal
-                        videoCard.addEventListener('click', () => {
-                            openModal(video.src);
-                        });
-
-                        videoGrid.appendChild(videoCard);
-                    });
-                }
-
-                // Set selected option in booking form
-                const serviceSelect = document.getElementById('service-select');
-                serviceSelect.value = serviceId;
-
-                // Show content
-                document.getElementById('main-content').classList.remove('opacity-0');
-            } else {
-                // Handle invalid service ID
-                document.getElementById('main-content').innerHTML = '<div class="text-center py-20"><h2 class="text-2xl font-bold">Service Not Found</h2><a href="../services.html" class="text-blue-600 hover:underline">Return to Services</a></div>';
-                document.getElementById('main-content').classList.remove('opacity-0');
-            }
-        });
-    </script>
+    <script src="./service-detail.js"></script>
 </body>
 
 </html>

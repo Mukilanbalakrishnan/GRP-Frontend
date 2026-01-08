@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Brand.</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0066FF',
+                            dark: '#111827',
+                            darkblue: '#1E3A8A',
+                            cyan: '#67E8F9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white">
+                        <i class="ph-bold ph-cube text-2xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-900">Brand.</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="../../../../../index.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Home</a>
+                    <a href="../aboutus/aboutus.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">About Us</a>
+                    <a href="../services/services.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <a href="#" class="text-blue-600 font-semibold">Products</a>
+                    <a href="../gallary/hero/Gallery.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Gallery</a>
+                    <a href="../contact/contact.html"
+                        class="px-6 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg font-medium">Contact
+                        Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none p-2">
+                        <i id="menu-icon" class="ph-bold ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="../../../../../index.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Home</a>
+                <a href="../aboutus/aboutus.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">About
+                    Us</a>
+                <a href="../services/services.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Services</a>
+                <a href="#" class="block px-4 py-3 text-base font-bold text-blue-600 bg-blue-50 rounded-lg">Products</a>
+                <a href="../gallary/hero/Gallery.html"
+                    class="block px-4 py-3 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg">Gallery</a>
+                <a href="../contact/contact.html"
+                    class="block px-4 py-3 text-base font-medium text-white bg-blue-600 rounded-lg mt-4 text-center shadow-md">Contact
+                    Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Spacer for fixed navbar -->
+    <div class="h-20"></div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- Header Section -->
+        <section class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop"
+                    alt="Products Background" class="w-full h-full object-cover">
+                <!-- Dark Blue Overlay -->
+                <div class="absolute inset-0 bg-brand-darkblue/80 mix-blend-multiply"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 animate-fade-in drop-shadow-lg">Our Products
+                </h1>
+                <p class="text-blue-100 text-lg md:text-xl animate-fade-in delay-100 max-w-2xl mx-auto font-light">
+                    Select a category to view our range of premium tiles.
+                </p>
+            </div>
+        </section>
+
+        <!-- Categories Grid -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 pb-24">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-[#002b49] mb-4">PRODUCT CATEGORIES</h2>
+                <div class="w-24 h-1 bg-[#e31e24] mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+
+                <!-- Category 1: Ceramic -->
+                <a href="pages/product-view.html?category=ceramic"
+                    class="group block relative h-80 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=800&auto=format&fit=crop"
+                        alt="Ceramic Roof Tiles"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-blue-100 transition-colors">
+                            Ceramic Roof Tiles</h3>
+                        <p
+                            class="text-gray-200 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Premium Elbano series with vibrant colors and durability.
+                        </p>
+                        <span
+                            class="inline-flex items-center text-white text-sm font-semibold uppercase tracking-wider">
+                            Explore Series <i
+                                class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Category 2: Clay -->
+                <a href="pages/product-view.html?category=clay"
+                    class="group block relative h-80 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1598418043689-50c5bb17202d?q=80&w=800&auto=format&fit=crop"
+                        alt="Clay Roof Tiles"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-blue-100 transition-colors">Clay
+                            Roof Tiles</h3>
+                        <p
+                            class="text-gray-200 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Classic Spanish Clay tiles for timeless elegance.
+                        </p>
+                        <span
+                            class="inline-flex items-center text-white text-sm font-semibold uppercase tracking-wider">
+                            Explore Series <i
+                                class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Category 3: Concrete -->
+                <a href="pages/product-view.html?category=concrete"
+                    class="group block relative h-80 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1520697830682-bbb6e85e420f?q=80&w=800&auto=format&fit=crop"
+                        alt="Concrete Roof Tiles"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-blue-100 transition-colors">
+                            Concrete Roof Tiles</h3>
+                        <p
+                            class="text-gray-200 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Robust Concrete Flat series available in various shades.
+                        </p>
+                        <span
+                            class="inline-flex items-center text-white text-sm font-semibold uppercase tracking-wider">
+                            Explore Series <i
+                                class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Category 4: White Cement -->
+                <a href="pages/product-view.html?category=white-cement"
+                    class="group block relative h-80 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1522851458296-189f81d1203d?q=80&w=800&auto=format&fit=crop"
+                        alt="White Cement Jally"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-blue-100 transition-colors">White
+                            Cement Jally</h3>
+                        <p
+                            class="text-gray-200 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Decorative White Cement Jally for architectural beauty.
+                        </p>
+                        <span
+                            class="inline-flex items-center text-white text-sm font-semibold uppercase tracking-wider">
+                            Explore Series <i
+                                class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Scroll to Top Button -->
+        <button id="scrollToTopBtn"
+            class="fixed bottom-8 right-8 bg-[#e31e24] text-white p-3 rounded-full shadow-lg hover:bg-red-700 transition-all transform hover:-translate-y-1 opacity-0 pointer-events-none z-40">
+            <i class="ph-bold ph-arrow-up text-xl"></i>
+        </button>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="products.js"></script>
+
+</body>
+
+</html>
