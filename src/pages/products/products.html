@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Brand.</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0066FF',
+                            dark: '#111827',
+                            darkblue: '#1E3A8A',
+                            cyan: '#67E8F9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Spacer for fixed navbar -->
+    <div class="h-20"></div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- Header Section -->
+        <section class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop"
+                    alt="Products Background" class="w-full h-full object-cover">
+                <!-- Dark Blue Overlay -->
+                <div class="absolute inset-0 bg-brand-darkblue/80 mix-blend-multiply"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 animate-fade-in drop-shadow-lg">Our Products
+                </h1>
+                <p class="text-blue-100 text-lg md:text-xl animate-fade-in delay-100 max-w-2xl mx-auto font-light">
+                    Select a category to view our range of premium tiles.
+                </p>
+            </div>
+        </section>
+
+        <!-- Categories Grid -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 pb-24">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-[#002b49] mb-4">PRODUCT CATEGORIES</h2>
+                <div class="w-24 h-1 bg-[#e31e24] mx-auto rounded-full"></div>
+            </div>
+
+            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+    <!-- Products from API will render here -->
+</div>
+
+        </section>
+
+        
+
+    </main>
+
+    <div class="pt-10">
+        <div id="footer-container" class="gallery-footer-wrapper"></div>
+    </div>
+
+   <script type="module" src="./products.js"></script>
+   <script src="/env.js"></script>
+    <script type="module" src="/main.js"></script>
+
+    <div id="modal-root"></div>
+
+</body>
+
+</html>

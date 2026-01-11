@@ -237,10 +237,17 @@
         <div id="footer-container" class="gallery-footer-wrapper"></div>
     </div>
 
+    <script src="/env.js"></script>
     <script src="../services.js"></script>
     <script type="module" src="/main.js"></script>
     <script>
-const BACKEND = "http://localhost/GRP-Backend/";
+
+
+// const API_BASE_URL = window.ENV.API_BASE_URL;
+
+if (!API_BASE_URL) {
+  console.error("❌ API_BASE_URL not found");
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -251,7 +258,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         const res = await fetch(
-            `http://localhost/GRP-Backend/api/main_services/back-service.php?id=${serviceId}`
+            `${API_BASE_URL}/api/main_services/back-service.php?id=${serviceId}`
         );
         const result = await res.json();
 
@@ -264,19 +271,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("hero-title").textContent = data.title;
         // document.getElementById("hero-subtitle").textContent = data.shortDesc || "";
         document.getElementById("hero-image").src =
-            BACKEND + data.thumbnail;
+            API_BASE_URL + data.thumbnail;
 
         // ABOUT
         document.getElementById("about-title").textContent = data.aboutTitle;
         document.getElementById("about-description").textContent = data.aboutDescription;
-        document.getElementById("about-image").src =
-            BACKEND + data.thumbnail;
-        document.getElementById("booking-image").src =
-            BACKEND + data.thumbnail;
-
-        // FEATURES
-        // FEATURES
+        document.getElementById("hero-image").src = imgUrl(data.thumbnail);
+document.getElementById("about-image").src = imgUrl(data.thumbnail);
+document.getElementById("booking-image").src = imgUrl(data.thumbnail);
 const bulletList = document.getElementById("bullet-points");
+
+
 bulletList.innerHTML = "";
 
 const features = Array.isArray(data.features) ? data.features : [];
@@ -330,6 +335,12 @@ function showNotFound() {
         </div>`;
 }
 
+function imgUrl(path) {
+  if (!path) return "";
+  return window.ENV.API_BASE_URL.replace(/\/$/, "") + "/" + path.replace(/^\//, "");
+}
+
+
 
 const enquiryForm = document.getElementById("enquiryForm");
 
@@ -348,7 +359,7 @@ enquiryForm.addEventListener("submit", async (e) => {
 
     try {
         const res = await fetch(
-            "http://localhost/GRP-Backend/api/enquiry-create.php",
+            `${API_BASE_URL}/api/enquiry-create.php`,
             {
                 method: "POST",
                 headers: {

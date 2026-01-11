@@ -5,6 +5,12 @@ import ScrollTrigger from "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigge
 
 gsap.registerPlugin(ScrollTrigger);
 
+
+const API_BASE_URL = window.ENV.API_BASE_URL;
+
+if (!API_BASE_URL) {
+  console.error("❌ API_BASE_URL not found");
+}
 // --- DATA ---
 export let testimonialData = [];
 
@@ -75,7 +81,7 @@ function closeVideoModal() {
 async function loadTestimonials() {
     try {
         const res = await fetch(
-            "http://localhost/GRP-Backend/api/video-testimonials/video-list.php"
+            `${API_BASE_URL}/api/video-testimonials/video-list.php`
         );
         const data = await res.json();
 

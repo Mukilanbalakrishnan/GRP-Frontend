@@ -49,6 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let reviews = [
         
     ];
+    const API_BASE_URL = window.ENV.API_BASE_URL;
+
+if (!API_BASE_URL) {
+  console.error("❌ API_BASE_URL not found");
+}
 
     let currentReviewIndex = 0;
 
@@ -65,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadAboutReviews() {
     try {
         const res = await fetch(
-            "http://localhost/GRP-Backend/api/about/about-list.php"
+            `${API_BASE_URL}/api/about/about-list.php`
         );
 
         const data = await res.json();
@@ -77,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             role: item.role,
             text: item.text,
             image: item.image
-                ? `http://localhost/GRP-Backend/${item.image}`
+                ? `${API_BASE_URL}/${item.image}`
                 : ""
         }));
 

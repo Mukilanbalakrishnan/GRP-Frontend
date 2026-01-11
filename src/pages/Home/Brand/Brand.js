@@ -14,8 +14,19 @@ import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@10
 //     { name: "FORGE INDUSTRIES", icon: "M12 2L2 7v10l10 5 10-5V7l-10-5zM12 22v-3", color: "from-rose-600 to-pink-500" },
 // ];
 
-const API_BASE = "http://localhost/GRP-Backend/api/brands";
-const IMAGE_BASE = "http://localhost/GRP-Backend/";
+// const API_BASE = "http://localhost/GRP-Backend/api/brands";
+
+
+const API_BASE_URL = window.ENV.API_BASE_URL;
+
+function getAPIBase() {
+  if (!window.ENV || !window.ENV.API_BASE_URL) {
+    console.error("❌ API_BASE_URL missing");
+    return "";
+  }
+  return window.ENV.API_BASE_URL;
+}
+
 let brands = [];
 
 
@@ -38,7 +49,7 @@ function getLogoCardHTML(brand, index) {
         <!-- BRAND IMAGE -->
         <div class="relative w-10 h-10 md:w-14 md:h-14 bg-white rounded-lg shadow-sm overflow-hidden">
   <img 
-    src="${IMAGE_BASE}${brand.image_path}"
+    src="${getAPIBase()}${brand.image_path.startsWith("/") ? "" : "/"}${brand.image_path}"
     alt="${brand.name}"
     class="absolute inset-0 w-full h-full object-cover"
     loading="lazy"
@@ -72,7 +83,7 @@ function getLogoCardHTML(brand, index) {
 
 async function fetchBrands() {
   try {
-    const res = await fetch(`${API_BASE}/brand-list.php`);
+    const res = await fetch(`${API_BASE_URL}/api/brands/brand-list.php`);
     brands = await res.json();
   } catch (err) {
     console.error("Failed to load brands", err);

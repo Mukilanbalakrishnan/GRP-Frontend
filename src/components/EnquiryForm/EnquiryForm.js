@@ -188,11 +188,11 @@ export function initEnquiryFormGlobal() {
         alert("Please fill all fields");
         return;
     }
-
+const API_BASE_URL = window.ENV.API_BASE_URL;
     try {
         // ✅ 2. Send data to backend
         const response = await fetch(
-            "http://localhost/GRP-Backend/api/enquiry-create.php",
+            `${API_BASE_URL}/api/enquiry-create.php`,
             {
                 method: "POST",
                 headers: {

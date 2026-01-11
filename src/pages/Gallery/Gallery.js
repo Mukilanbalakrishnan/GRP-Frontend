@@ -2,8 +2,13 @@
 // import { initNavbar } from "../../components/Navbar/Navbar";
 // import { initFooter } from "../../components/Footer/Footer";
 
-const GALLERY_API =
-    "http://localhost/GRP-Backend/api/gallery/gallery-list.php";
+
+
+    const API_BASE_URL = window.ENV.API_BASE_URL;
+
+if (!API_BASE_URL) {
+  console.error("❌ API_BASE_URL not found");
+}
 
 
 let galleryData = [];
@@ -87,7 +92,7 @@ class Gallery {
 
     async loadGalleryFromDB() {
     try {
-        const res = await fetch(GALLERY_API);
+        const res = await fetch(`${API_BASE_URL}/api/gallery/gallery-list.php`);
         const data = await res.json();
         
 
