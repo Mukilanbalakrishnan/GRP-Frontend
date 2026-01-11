@@ -1,5 +1,7 @@
 
 // Form Logic (Basic interaction)
+
+const API_BASE_URL = window.ENV.API_BASE_URL;
 const form = document.getElementById('contactForm');
 if (form) {
     form.addEventListener('submit', (e) => {
@@ -41,7 +43,7 @@ contactForm.addEventListener("submit", async (e) => {
 
     try {
         const res = await fetch(
-            "http://localhost/GRP-Backend/api/enquiry-create.php",
+            `${API_BASE_URL}/api/enquiry-create.php`,
             {
                 method: "POST",
                 headers: {

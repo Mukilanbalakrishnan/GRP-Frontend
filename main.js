@@ -17,6 +17,10 @@ import { initEnquiryFormGlobal } from './src/components/EnquiryForm/EnquiryForm.
 import { initGlobalLoader } from './src/components/GlobalLoader/GlobalLoader.js';
 // import {}
 
+// Make env available globally
+
+
+
 
 // 2. LOADER FUNCTION
 async function loadComponent(containerId, htmlPath, initFunction) {

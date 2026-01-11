@@ -1,8 +1,13 @@
 import { animate, stagger, inView } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
 
-// 1. THE DATA
-const API_BASE = "http://localhost/GRP-Backend/api/services";
-const IMAGE_BASE = "http://localhost/GRP-Backend/";
+
+
+
+const API_BASE_URL = window.ENV.API_BASE_URL;
+
+if (!API_BASE_URL) {
+  console.error("❌ API_BASE_URL not found");
+}
 let servicesData = [];
 
 
@@ -182,7 +187,7 @@ export async function initServices() {
 
 async function fetchServices() {
   try {
-    const res = await fetch(`${API_BASE}/service-list.php`);
+    const res = await fetch(`${API_BASE_URL}/api/services/service-list.php`);
     servicesData = await res.json();
   } catch (err) {
     console.error("Failed to load services", err);
@@ -216,7 +221,14 @@ function createCard(item, container, isMobile, index) {
         <div class="js-gradient-overlay absolute inset-0 rounded-2xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         
         <img
-  src="${IMAGE_BASE}${item.image_path}"
+  src="${
+  item.image_path.startsWith("https")
+    ? item.image_path
+    : item.image_path.startsWith("/")
+      ? API_BASE_URL + item.image_path
+      : API_BASE_URL + "/" + item.image_path
+}"
+
   alt="${item.title}"
   class="icon-svg w-8 h-8 object-contain relative z-10
          transition-all duration-500

@@ -9,6 +9,12 @@ const AUTO_SLIDE_DELAY = 4000; // 4 seconds
 let desktopPage = 0;
 let autoSlideInterval;
 
+const API_BASE_URL = window.ENV.API_BASE_URL;
+
+if (!API_BASE_URL) {
+  console.error("❌ API_BASE_URL not found");
+}
+
 // --- DATA ---
 let reviews = [];
 
@@ -168,7 +174,7 @@ function createCard(item, isMobile) {
 async function loadTextTestimonials() {
     try {
         const res = await fetch(
-            "http://localhost/GRP-Backend/api/text-testimonals/text-list.php"
+            `${API_BASE_URL}/api/text-testimonals/text-list.php`
         );
 
         const data = await res.json();

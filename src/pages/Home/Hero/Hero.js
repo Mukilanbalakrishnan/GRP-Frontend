@@ -1,11 +1,18 @@
 import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm"
 
+
+const API_BASE_URL = window.ENV.API_BASE_URL;
+
+if (!API_BASE_URL) {
+  console.error("❌ API_BASE_URL not found");
+}
+
 // 1. Image Configuration
 let heroState = { images: [] };
 
 async function loadHeroImages() {
     const res = await fetch(
-        "http://localhost/GRP-Backend/api/hero/hero-list.php"
+        `${API_BASE_URL}/api/hero/hero-list.php`
     );
     const result = await res.json();
 
@@ -13,7 +20,7 @@ async function loadHeroImages() {
 
     // convert DB paths → full URLs
     heroState.images = result.data.map(img =>
-        "http://localhost/GRP-Backend/" + img.image_path
+        `${API_BASE_URL}/` + img.image_path
     );
 
     initBackgroundSlider(); // ✅ START SLIDER AFTER DATA LOAD

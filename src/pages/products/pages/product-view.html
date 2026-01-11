@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Brand.</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0066FF',
+                            dark: '#111827',
+                            darkblue: '#1E3A8A',
+                            cyan: '#67E8F9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .hidden-section {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Spacer for fixed navbar -->
+    <div class="h-20"></div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- Header Section -->
+        <section class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop"
+                    alt="Products Background" class="w-full h-full object-cover">
+                <!-- Dark Blue Overlay -->
+                <div class="absolute inset-0 bg-brand-darkblue/80 mix-blend-multiply"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 animate-fade-in drop-shadow-lg"
+                    id="page-title">Our Products
+                </h1>
+                <p class="text-blue-100 text-lg md:text-xl animate-fade-in delay-100 max-w-2xl mx-auto font-light">
+                    Explore our range of high-quality products designed to meet your needs.
+                </p>
+                <a href="../products.html" class="inline-block mt-6 text-white hover:text-cyan-300 transition-colors">
+                    <i class="ph-bold ph-arrow-left mr-1"></i> Back to Categories
+                </a>
+            </div>
+        </section>
+
+        <!-- Product Name Section -->
+<section class="bg-white border-b">
+  <div class="max-w-7xl mx-auto px-4 py-6 text-center">
+    <h2
+      id="product-name"
+      class="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide uppercase">
+      <!-- Product name will be injected here -->
+    </h2>
+  </div>
+</section>
+
+
+        <!-- Products Grid Container -->
+
+        <!-- Section: Ceramic Roof Tiles (ID: ceramic) -->
+        <!-- Product Brands Grid -->
+<section class="max-w-7xl mx-auto px-4 py-16">
+  <div id="brand-grid"
+       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+  </div>
+</section>
+
+
+    </main>
+
+    <div class="pt-10">
+        <div id="footer-container" class="gallery-footer-wrapper"></div>
+    </div>
+
+   <script type="module" src="./product-view.js"></script>
+   <script src="/env.js"></script>
+    <script type="module" src="/main.js"></script>
+
+    <!-- Color Picker Modal -->
+    <div id="color-picker-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-3xl p-8 max-w-lg w-full mx-4 shadow-2xl transform transition-all scale-100">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Select a Colour</h3>
+                <button id="close-color-picker" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <i class="ph-bold ph-x text-xl text-gray-500"></i>
+                </button>
+            </div>
+
+            <div id="color-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-6">
+                <!-- Color options will be injected here via JS -->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
